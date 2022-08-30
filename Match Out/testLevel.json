@@ -1,0 +1,30 @@
+{
+    "levelType": "pink",
+    "description": "Тестовое описание уровня/nc заданиями на реализацию",
+    "extraMatches": 3,
+    "matches": [{
+            "matchType": 1,
+            "x": 0,
+            "y": 0,
+            "matchAngle": "0"
+        },
+        {
+            "matchType": 1,
+            "x": 72,
+            "y": 75,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 150,
+            "y": 0,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": 75,
+            "y": -75,
+            "matchAngle": "-.pi/2"
+        }
+    ]
+}

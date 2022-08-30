@@ -10,79 +10,55 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var backgroundImage: SKSpriteNode = SKSpriteNode()
+    var levelModel: LevelModel?
     
     override func didMove(to view: SKView) {
+        // TODO проверяем текущий уровень
+        // Парсим уровень
+        // Собираем уровень, исходя из ThemeModel
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        // TODO первый шаг - проверяем как отображается спичка +
+        // Второй шаг - поправить уровень в JSON на основе собранного кода -
+        // Третий шаг - парсим уровень
+//        let matchNode = MatchNode.init(type: .green)
+//        matchNode.position = CGPoint.zero
+//        self.addChild(matchNode)
+//
+//        let moreMatchNode = MatchNode.init(type: .brown)
+//        moreMatchNode.position = CGPoint.init(x: 72, y: 75)
+//        moreMatchNode.zRotation = .pi / 2
+//        self.addChild(moreMatchNode)
+//
+//        let redMatch = MatchNode.init(type: .red)
+//        redMatch.position = CGPoint.init(x: 150, y: 0)
+//        redMatch.zRotation = .pi
+//        self.addChild(redMatch)
+//
+//        let blueMatch = MatchNode.init(type: .blue)
+//        blueMatch.position = CGPoint.init(x: 75, y: -75)
+//        blueMatch.zRotation = -.pi/2
+//        self.addChild(blueMatch)
+//
+        self.levelModel = LevelParser().loadLevel(levelName: "testLevel")
+        if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
+            backgroundImage = themeLevel.backgroundLevelSprite
+            backgroundImage.size.height = self.frame.height
+            backgroundImage.zPosition = -5
+            self.addChild(backgroundImage)
+            if let matches = self.levelModel?.matches {
+                for match in matches {
+                    let matchNode = MatchNode.init(type: themeLevel.matchType)
+                    matchNode.position = CGPoint.init(x: CGFloat(match.x), y: CGFloat(match.y))
+                    matchNode.zRotation = matchNode.floatAngleFromString(stringAngle: match.matchAngle)
+                    self.addChild(matchNode)
+                }
+            }
         }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+//        let blackMatch = MatchNode.init(type: .black)
+//        blackMatch.position = CGPoint.init(x: 75, y: 0)
+////        blackMatch.zRotation =
+//        self.addChild(blackMatch)
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-    }
 }

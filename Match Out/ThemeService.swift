@@ -8,19 +8,36 @@
 import Foundation
 import SpriteKit
 
+// TODO описать все глобальные цвета
+let globalBlueColor: UIColor = UIColor.init(red: 84/255.0, green: 114/255.0, blue: 184/255.0, alpha: 1)
+let globalGreenColor: UIColor = UIColor.init(red: 116/255.0, green: 178/255.0, blue: 85/255.0, alpha: 1)
+let globalBlackColor: UIColor = UIColor.init(red: 63/255.0, green: 63/255.0, blue: 63/255.0, alpha: 1)
+let globalBrownColor: UIColor = UIColor.init(red: 96/255.0, green: 79/255.0, blue: 55/255.0, alpha: 1)
+// TODO перенести из заметок все в реализацию
+
+/// Модель темы для уровня, содержит цвет фона, цвет спичек, цвет текста задания
+struct ThemeModel {
+    let textColor: UIColor // Цвет задания
+    let buttonsTintColor: UIColor // Цвет для кнопок
+    let backgroundLevelSprite: SKSpriteNode // Спрайт для бэкграунда
+    let matchType: MatchType
+}
+
 class ThemeService {
-    static func backgroundColorForLevelType(levelType: LevelColorType?)->UIColor {
+    static func backgroundColorForLevelType(levelType: LevelColorType?)->ThemeModel? {
         switch levelType {
-        case .plainWhite:
-            return .white
-        case .plainBlack:
-            return .black
-        case .neonBar:
-            return .black
-        case .alchimicLab:
-            return .yellow
+        case .green:
+            return ThemeModel(textColor: globalBlueColor, buttonsTintColor: globalBlueColor, backgroundLevelSprite: SKSpriteNode.init(imageNamed: "backgroundWhiteGreen"), matchType: .blue)
+        case .red:
+            return ThemeModel(textColor: globalBlueColor, buttonsTintColor: globalBlueColor, backgroundLevelSprite: SKSpriteNode.init(imageNamed: "backgroundWhiteAndRed"), matchType: .blue)
+        case .orange:
+            return ThemeModel(textColor: globalBlueColor, buttonsTintColor: globalBlueColor, backgroundLevelSprite: SKSpriteNode.init(imageNamed: "backgroundWhiteOrange"), matchType: .blue)
+        case .gray:
+            return ThemeModel(textColor: globalBlackColor, buttonsTintColor: globalBlackColor, backgroundLevelSprite: SKSpriteNode.init(imageNamed: "backgroundWhiteAndGray"), matchType: .black)
+        case .pink:
+            return ThemeModel(textColor: globalBlackColor, buttonsTintColor: globalBlackColor, backgroundLevelSprite: SKSpriteNode.init(imageNamed: "backgroundWhitePink"), matchType: .brown)
         case .none:
-            return .black
+            return nil
         }
     }
 }
