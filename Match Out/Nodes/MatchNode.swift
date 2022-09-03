@@ -16,8 +16,10 @@ enum MatchType: String, Decodable {
     case blue          = "blue"
 }
 
-var potentailMatch: Bool = false
 class MatchNode: SKSpriteNode {
+    var potentailMatch: Bool = false // Является ли спичка placeholder'ом
+    var canBecomeExtraMatch: Bool = false // Можно ли убрать спичку при нажатии в доступные спички
+    var isSelectedMatch: Bool = false // Выбрана ли спичка в моменте
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -86,4 +88,11 @@ class MatchNode: SKSpriteNode {
         return 0
     }
 
+    // Можно ли выбрать спичку
+    func canBeSelected()->Bool {
+        if potentailMatch == true {
+            return false
+        }
+        return true
+    }
 }

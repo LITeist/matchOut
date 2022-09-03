@@ -3,6 +3,7 @@
     "description": "Уберите одну спичку,  чтобы получилось два треугольника",
     "extraMatches": 0,
     "matchSize": "big",
+    "gameplayType": "remove",
     "matches": [
         {
             "matchType": 1,

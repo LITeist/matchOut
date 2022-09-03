@@ -15,6 +15,7 @@ class GameScene: SKScene {
     var bulbButtonNode: SKSpriteNode = SKSpriteNode()
     var menuButtonNode: SKSpriteNode = SKSpriteNode()
     var levelModel: LevelModel?
+    var gameService: GameService?
     
     override func didMove(to view: SKView) {
         // TODO проверяем текущий уровень
@@ -24,6 +25,7 @@ class GameScene: SKScene {
         // TODO первый шаг - проверяем как отображается спичка +
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
+        self.gameService = GameService()
         self.levelModel = LevelParser().loadLevel(levelName: "level_3")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
@@ -86,8 +88,10 @@ class GameScene: SKScene {
                 }
                 let matchNode = MatchNode.init(type: matchType, matchSize: self.levelModel?.matchSize ?? .small)
                 matchNode.position = CGPoint.init(x: CGFloat(-280 + i*40), y: self.frame.minY + 20)
+                matchNode.name = "extraMatch"
                 self.addChild(matchNode)
             }
+            gameService?.extraNodesRemain = self.levelModel?.extraMatches ?? 0
         }
     }
     
@@ -99,4 +103,108 @@ class GameScene: SKScene {
 
         backgroundImage.run(moveForever)
     }
+    
+    // Про движения
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Проверяем, можно ли добавить или убрать спичку
+        // Если можно убирать и спичка настоящая - убираем, иначе ничего не делаем
+        // Если можно добавлять, есть спички и нажатая сейчас с спичка - плейсхолджер - переносим. Иначе ничего не делаем
+        if let selectedMatchNode = getSelectedMatchFor(touches: touches) {
+            switch levelModel?.gameplayType {
+                case .add:
+                    if selectedMatchNode.potentailMatch == true {
+//                        enumerateChildNodes(withName: "extraMatch") {
+//                            (node, stop) in
+//                            node.zRotation = selectedMatchNode.zRotation
+//                            node.position = selectedMatchNode.position
+//                            node.name = ""
+//                            if let matchMode = node as? MatchNode {
+//                                matchMode.canBecomeExtraMatch = true
+//                                self.gameService?.extraNodesRemain -= 1
+//                            }
+//                            stop.initialize(to: true)
+                        if let childNode = getExtraNodeForIndex(index: self.gameService?.extraNodesRemain ?? 0) {
+                            childNode.zRotation = selectedMatchNode.zRotation
+                            childNode.position = selectedMatchNode.position
+                            childNode.canBecomeExtraMatch = true
+                            self.gameService?.extraNodesRemain -= 1
+                        }
+                    } else {
+                        if selectedMatchNode.canBecomeExtraMatch {
+                            moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode)
+                        }
+                }
+                case .remove:
+                    if selectedMatchNode.potentailMatch == false {
+                        moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode)
+                    }
+                //
+                case .none:
+                    break
+                //
+            }
+        }
+    }
+    
+    func moveNodeToExtraNodePlace(selectedMatchNode: MatchNode) {
+        selectedMatchNode.zRotation = 0
+        selectedMatchNode.position = extraNodePositionForIndex(index: gameService?.extraNodesRemain ?? 0)
+        selectedMatchNode.name = "extraMatch"
+        gameService?.extraNodesRemain += 1
+    }
+    
+    func extraNodePositionForIndex(index: Int) -> CGPoint {
+       return CGPoint.init(x: CGFloat(-280 + index*40), y: self.frame.minY + 20)
+    }
+    
+    func getExtraNodeForIndex(index: Int) -> MatchNode? {
+        for child in self.children {
+            if child.name == "extraMatch" {
+                if abs(child.position.x - CGFloat(-280 + (index-1)*40)) <= 0.5 {
+                    return child as? MatchNode
+                }
+            }
+        }
+        return nil
+    }
+    
+    func getSelectedMatchFor(touches: Set<UITouch>) -> MatchNode? {
+        let touch = touches.first as UITouch?
+        if let touchLocation = touch?.location(in: self) {
+            if let targetNode = atPoint(touchLocation) as? MatchNode {
+                return targetNode
+            }
+            else if let targetNode = atPoint(touchLocation) as? SKSpriteNode {
+                if let baseNode = parentNodeOf(node: targetNode) as? MatchNode {
+                   return baseNode
+                }
+            }
+            else if let targetNode = atPoint(touchLocation) as? SKEmitterNode {
+                if let baseNode = parentNodeOf(node: targetNode) as? MatchNode {
+                   return baseNode
+                }
+            }
+        }
+        return nil
+    }
+    
+    func parentNodeOf(node: SKNode) -> SKNode?
+    {
+        if let parentNode = node.parent
+        {
+            if parentNode is MatchNode
+            {
+                return parentNode
+            }
+            else
+            {
+                return parentNodeOf(node:parentNode)
+            }
+        }
+        else
+        {
+            return nil
+        }
+    }
+
 }

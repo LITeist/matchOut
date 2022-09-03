@@ -29,9 +29,16 @@ enum MatchSize: String, Decodable {
     case big          = "big"
 }
 
+/// Тип игрового уровня - можно только убирать спички или добавлять/убирать
+enum LevelGameType: String, Decodable {
+    case add           = "add"
+    case remove        = "remove"
+}
+
 /// Структура для парсинга уровней из JSON
 struct LevelModel: Decodable {
-    let levelType: LevelColorType  // Тип уровня
+    let levelType: LevelColorType  // Тип уровня по цвету
+    let gameplayType: LevelGameType // Тип уровня по геймплею
     let matchSize: MatchSize
     let description: String
     let extraMatches: Int // Сколько экстра спичек

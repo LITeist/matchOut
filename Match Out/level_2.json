@@ -3,6 +3,7 @@
     "description": "Уберите три спички,  чтобы получилось три квадрата",
     "extraMatches": -3,
     "matchSize": "medium",
+    "gameplayType": "remove",
     "matches": [
         {
             "matchType": 1,

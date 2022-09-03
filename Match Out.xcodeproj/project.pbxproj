@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		569E4CD128C3781300A9066A /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E4CD028C3781300A9066A /* GameService.swift */; };
 		569E8AD128AEA4320005D7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E8AD028AEA4320005D7FA /* AppDelegate.swift */; };
 		569E8AD328AEA4320005D7FA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 569E8AD228AEA4320005D7FA /* GameScene.sks */; };
 		569E8AD528AEA4320005D7FA /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 569E8AD428AEA4320005D7FA /* Actions.sks */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		569E4CD028C3781300A9066A /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		569E8ACD28AEA4320005D7FA /* Match Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Match Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569E8AD028AEA4320005D7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		569E8AD228AEA4320005D7FA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		569E4CCF28C3780400A9066A /* GameService */ = {
+			isa = PBXGroup;
+			children = (
+				569E4CD028C3781300A9066A /* GameService.swift */,
+			);
+			name = GameService;
+			sourceTree = "<group>";
+		};
 		569E8AC428AEA4320005D7FA = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 		569E8ACF28AEA4320005D7FA /* Match Out */ = {
 			isa = PBXGroup;
 			children = (
+				569E4CCF28C3780400A9066A /* GameService */,
 				56A7CD0B28BE725D00802543 /* Nodes */,
 				56A7CD0628B7991500802543 /* LevelsJSON */,
 				56A7CD0328B6950600802543 /* Levels */,
@@ -219,6 +230,7 @@
 				56A7CD0228B694D800802543 /* ThemeService.swift in Sources */,
 				569E8AD928AEA4320005D7FA /* GameViewController.swift in Sources */,
 				569E8AD128AEA4320005D7FA /* AppDelegate.swift in Sources */,
+				569E4CD128C3781300A9066A /* GameService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
