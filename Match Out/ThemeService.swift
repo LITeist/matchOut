@@ -8,12 +8,12 @@
 import Foundation
 import SpriteKit
 
-// TODO описать все глобальные цвета
+// Константные цвета
 let globalBlueColor: UIColor = UIColor.init(red: 84/255.0, green: 114/255.0, blue: 184/255.0, alpha: 1)
 let globalGreenColor: UIColor = UIColor.init(red: 116/255.0, green: 178/255.0, blue: 85/255.0, alpha: 1)
 let globalBlackColor: UIColor = UIColor.init(red: 63/255.0, green: 63/255.0, blue: 63/255.0, alpha: 1)
 let globalBrownColor: UIColor = UIColor.init(red: 96/255.0, green: 79/255.0, blue: 55/255.0, alpha: 1)
-// TODO перенести из заметок все в реализацию
+
 
 /// Модель темы для уровня, содержит цвет фона, цвет спичек, цвет текста задания
 struct ThemeModel {

@@ -1,7 +1,7 @@
 {
-    "levelType": "pink",
-    "description": "Тестовое описание уровня/nc заданиями на реализацию",
-    "extraMatches": 3,
+    "levelType": "gray",
+    "description": "Переставьте одну спичку,  чтобы получилось верное равенство",
+    "extraMatches": -3,
     "matches": [{
             "matchType": 1,
             "x": 0,

@@ -18,11 +18,21 @@ enum LevelColorType: String, Decodable {
     case orange        = "orange"
     case gray          = "gray"
     case pink          = "pink"
-} 
+}
+
+
+/// Размер спички на уровне
+enum MatchSize: String, Decodable {
+    case extraSmall   = "extraSmall"
+    case small        = "small"
+    case medium       = "medium"
+    case big          = "big"
+}
 
 /// Структура для парсинга уровней из JSON
 struct LevelModel: Decodable {
     let levelType: LevelColorType  // Тип уровня
+    let matchSize: MatchSize
     let description: String
     let extraMatches: Int // Сколько экстра спичек
     let matches: Array<matchModel>    // Набор моделей контейнера для игры

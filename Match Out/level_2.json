@@ -1,0 +1,104 @@
+{
+    "levelType": "green",
+    "description": "Уберите три спички,  чтобы получилось три квадрата",
+    "extraMatches": -3,
+    "matchSize": "medium",
+    "matches": [
+        {
+            "matchType": 1,
+            "x": 10,
+            "y": 130,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 130,
+            "y": 20,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 240,
+            "y": 130,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": 130,
+            "y": 250,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -10,
+            "y": -110,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": -130,
+            "y": -220,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -240,
+            "y": -110,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": -130,
+            "y": 0,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 10,
+            "y": -110,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 130,
+            "y": -220,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 240,
+            "y": -110,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": 130,
+            "y": 0,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -10,
+            "y": -350,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": -130,
+            "y": -460,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -240,
+            "y": -350,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": -130,
+            "y": -240,
+            "matchAngle": "-.pi/2"
+        }
+    ]
+}

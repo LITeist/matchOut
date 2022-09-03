@@ -1,0 +1,50 @@
+{
+    "levelType": "orange",
+    "description": "Уберите одну спичку,  чтобы получилось два треугольника",
+    "extraMatches": 0,
+    "matchSize": "big",
+    "matches": [
+        {
+            "matchType": 1,
+            "x": 0,
+            "y": 120,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": 0,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": -65,
+            "y": 0,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": -135,
+            "y": -120,
+            "matchAngle": ".pi/2"
+        },
+        {
+                "matchType": 1,
+                "x": 70,
+                "y": 0,
+                "matchAngle": "-.pi/6"
+            },
+            {
+                "matchType": 1,
+                "x": 200,
+                "y": 0,
+                "matchAngle": ".pi/6"
+            },
+            {
+                "matchType": 1,
+                "x": 135,
+                "y": -120,
+                "matchAngle": "-.pi/2"
+            }
+    ]
+}
