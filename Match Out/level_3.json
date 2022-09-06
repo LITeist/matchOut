@@ -157,5 +157,13 @@
             "y": -540,
             "matchAngle": "-.pi/2"
         },
+    ],
+    "resolves": [{
+        "matchArray": [ {
+            "matchType": 1,
+            "x": 0,
+            "y": 90,
+            "matchAngle": ".pi"
+        }]}
     ]
 }

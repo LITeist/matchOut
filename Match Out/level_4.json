@@ -107,5 +107,26 @@
             "y": -330,
             "matchAngle": ".pi"
         },
+    ],
+    "resolves": [{
+        "matchArray": [   {
+            "matchType": 1,
+            "x": -100,
+            "y": -430,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": -330,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 200,
+            "y": -130,
+            "matchAngle": ".pi"
+        }
+        ]}
     ]
 }

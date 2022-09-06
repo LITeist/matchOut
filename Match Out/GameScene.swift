@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_1")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_3")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -166,8 +166,7 @@ class GameScene: SKScene {
             for solve in solvesArray {
                     for matchModel in solve.matchArray {
                         if self.levelModel?.gameplayType == .remove {
-                            if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) {
-                                print("успех")
+                            if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) == false {
                                 return
                             }
                         } else if self.levelModel?.gameplayType == .add {
@@ -175,17 +174,17 @@ class GameScene: SKScene {
                             if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
                                 return
                             }
-                            print("Успех!")
                         }
                     }
             }
         }
+        print("успех")
     }
     
     func checkIfMatchExistsOnBoard(matchToFind: matchModel)->Bool {
         for child in self.children {
             if let child = child as? MatchNode {
-                if (abs(child.position.x - CGFloat(matchToFind.x)) < 0.1) && (abs(child.position.y - CGFloat(matchToFind.y)) < 0.1) && (!child.potentailMatch == Bool(truncating: matchToFind.matchType as NSNumber)){
+                if (abs(child.position.x - CGFloat(matchToFind.x)) < 0.1) && (abs(child.position.y - CGFloat(matchToFind.y)) < 0.1) && (!child.potentailMatch == Bool(truncating: matchToFind.matchType as NSNumber)) && (abs(child.floatAngleFromString(stringAngle: matchToFind.matchAngle) - child.zRotation) < 0.1) {
                     return true
                 }
             }
