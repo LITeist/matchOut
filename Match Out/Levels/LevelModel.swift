@@ -43,6 +43,7 @@ struct LevelModel: Decodable {
     let description: String
     let extraMatches: Int // Сколько экстра спичек
     let matches: Array<matchModel>    // Набор моделей контейнера для игры
+    let resolves: Array<solveModel>   // Набор решений
 }
 
 struct matchModel: Decodable {
@@ -50,4 +51,8 @@ struct matchModel: Decodable {
     let x: Float
     let y: Float
     let matchAngle: String
+}
+
+struct solveModel: Decodable {
+    let matchArray: Array<matchModel>
 }

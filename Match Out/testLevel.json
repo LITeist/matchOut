@@ -1,7 +1,7 @@
 {
     "levelType": "gray",
     "description": "Переставьте одну спичку,  чтобы получилось верное равенство",
-    "extraMatches": -3,
+    "extraMatches": 0,
     "gameplayType": "add",
     "matches": [{
             "matchType": 1,

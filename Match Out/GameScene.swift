@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_3")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_1")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -79,17 +79,19 @@ class GameScene: SKScene {
                 }
             }
             // Указываем количество доступных спичек
-            for i in 0..<abs(self.levelModel?.extraMatches ?? 0) {
-                // Если extraMatch отрицательный - спички можно только возвращать с доски и показываем ghostMatch
-                // TODO доработать ghostMatch, пока Black
-                var matchType: MatchType = .black
-                if self.levelModel?.extraMatches ?? 0 > 0 {
-                    matchType = themeLevel.matchType
+            if self.levelModel?.extraMatches ?? 0 > 0 {
+                for i in 0..<(self.levelModel?.extraMatches ?? 0) {
+                    // Если extraMatch отрицательный - спички можно только возвращать с доски и показываем ghostMatch
+                    // TODO доработать ghostMatch, пока Black
+                    var matchType: MatchType = .black
+                    if self.levelModel?.extraMatches ?? 0 > 0 {
+                        matchType = themeLevel.matchType
+                    }
+                    let matchNode = MatchNode.init(type: matchType, matchSize: self.levelModel?.matchSize ?? .small)
+                    matchNode.position = CGPoint.init(x: CGFloat(-280 + i*40), y: self.frame.minY + 20)
+                    matchNode.name = "extraMatch"
+                    self.addChild(matchNode)
                 }
-                let matchNode = MatchNode.init(type: matchType, matchSize: self.levelModel?.matchSize ?? .small)
-                matchNode.position = CGPoint.init(x: CGFloat(-280 + i*40), y: self.frame.minY + 20)
-                matchNode.name = "extraMatch"
-                self.addChild(matchNode)
             }
             gameService?.extraNodesRemain = self.levelModel?.extraMatches ?? 0
         }
@@ -135,8 +137,20 @@ class GameScene: SKScene {
                         }
                 }
                 case .remove:
-                    if selectedMatchNode.potentailMatch == false {
-                        moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode)
+                    if selectedMatchNode.potentailMatch == false && selectedMatchNode.name != "extraMatch" {
+                        //  Очень странная, но рабочая логика :)
+                        if abs(gameService?.extraNodesRemain ?? 0) - abs(self.levelModel?.extraMatches ?? 0) < abs(self.levelModel?.extraMatches ?? 0)  {
+                            moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode, shouldIncrement: false)
+                        }
+                    } else if selectedMatchNode.potentailMatch == true {
+                        // Вынести в общий блог с параметром shouldIncrement
+                        if let childNode = getExtraNodeForIndex(index: abs(self.gameService?.extraNodesRemain ?? 0)) {
+                            childNode.zRotation = selectedMatchNode.zRotation
+                            childNode.position = selectedMatchNode.position
+                            childNode.canBecomeExtraMatch = true
+                            childNode.name = ""
+                            self.gameService?.extraNodesRemain += 1
+                        }
                     }
                 //
                 case .none:
@@ -146,15 +160,63 @@ class GameScene: SKScene {
         }
     }
     
-    func moveNodeToExtraNodePlace(selectedMatchNode: MatchNode) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // TODO проверяем сходимость игры
+        if let solvesArray = self.levelModel?.resolves {
+            for solve in solvesArray {
+                    for matchModel in solve.matchArray {
+                        if self.levelModel?.gameplayType == .remove {
+                            if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) {
+                                print("успех")
+                                return
+                            }
+                        } else if self.levelModel?.gameplayType == .add {
+                        // Если не проходит проверка хоть раз - break цикла делаем
+                            if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
+                                return
+                            }
+                            print("Успех!")
+                        }
+                    }
+            }
+        }
+    }
+    
+    func checkIfMatchExistsOnBoard(matchToFind: matchModel)->Bool {
+        for child in self.children {
+            if let child = child as? MatchNode {
+                if (abs(child.position.x - CGFloat(matchToFind.x)) < 0.1) && (abs(child.position.y - CGFloat(matchToFind.y)) < 0.1) && (!child.potentailMatch == Bool(truncating: matchToFind.matchType as NSNumber)){
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    func checkIfMatchNotExistsOnBoard(matchToFind: matchModel)->Bool {
+        for child in self.children {
+            if let child = child as? MatchNode {
+                if (abs(child.position.x - CGFloat(matchToFind.x)) < 0.1) && (abs(child.position.y - CGFloat(matchToFind.y)) < 0.1) && (!child.potentailMatch == Bool(truncating: matchToFind.matchType as NSNumber)){
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    func moveNodeToExtraNodePlace(selectedMatchNode: MatchNode, shouldIncrement: Bool? = true) {
         selectedMatchNode.zRotation = 0
         selectedMatchNode.position = extraNodePositionForIndex(index: gameService?.extraNodesRemain ?? 0)
         selectedMatchNode.name = "extraMatch"
-        gameService?.extraNodesRemain += 1
+        if shouldIncrement ?? true {
+          gameService?.extraNodesRemain += 1
+        } else {
+            gameService?.extraNodesRemain -= 1
+        }
     }
     
     func extraNodePositionForIndex(index: Int) -> CGPoint {
-       return CGPoint.init(x: CGFloat(-280 + index*40), y: self.frame.minY + 20)
+       return CGPoint.init(x: CGFloat(-280 + abs(index)*40), y: self.frame.minY + 20)
     }
     
     func getExtraNodeForIndex(index: Int) -> MatchNode? {

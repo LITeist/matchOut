@@ -1,7 +1,7 @@
 {
     "levelType": "orange",
     "description": "Уберите одну спичку,  чтобы получилось два треугольника",
-    "extraMatches": 0,
+    "extraMatches": -1,
     "matchSize": "big",
     "gameplayType": "remove",
     "matches": [
@@ -47,5 +47,13 @@
                 "y": -120,
                 "matchAngle": "-.pi/2"
             }
+    ],
+    "resolves": [{
+        "matchArray": [{
+            "matchType": 1,
+            "x": 0,
+            "y": 120,
+            "matchAngle": "-.pi/2"
+        }]}
     ]
 }

@@ -25,6 +25,7 @@
 		56C47CFB28BFA69300B9980B /* level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFA28BFA69200B9980B /* level_1.json */; };
 		56C47CFD28C001F200B9980B /* level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFC28C001F100B9980B /* level_2.json */; };
 		56C47CFF28C1049F00B9980B /* level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFE28C1049F00B9980B /* level_3.json */; };
+		56CA5EC528C64F7900EEB5BA /* level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 56CA5EC428C64F7900EEB5BA /* level_4.json */; };
 		56FCE26228B0F95700307714 /* TestLevelScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56FCE26128B0F95700307714 /* TestLevelScene.sks */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		56C47CFA28BFA69200B9980B /* level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_1.json; sourceTree = "<group>"; };
 		56C47CFC28C001F100B9980B /* level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_2.json; sourceTree = "<group>"; };
 		56C47CFE28C1049F00B9980B /* level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_3.json; sourceTree = "<group>"; };
+		56CA5EC428C64F7900EEB5BA /* level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_4.json; sourceTree = "<group>"; };
 		56FCE26128B0F95700307714 /* TestLevelScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestLevelScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				56C47CFA28BFA69200B9980B /* level_1.json */,
 				56C47CFC28C001F100B9980B /* level_2.json */,
 				56C47CFE28C1049F00B9980B /* level_3.json */,
+				56CA5EC428C64F7900EEB5BA /* level_4.json */,
 			);
 			name = LevelsJSON;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				56C47CFD28C001F200B9980B /* level_2.json in Resources */,
 				569E8AE128AEA4350005D7FA /* LaunchScreen.storyboard in Resources */,
 				569E8AD528AEA4320005D7FA /* Actions.sks in Resources */,
+				56CA5EC528C64F7900EEB5BA /* level_4.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

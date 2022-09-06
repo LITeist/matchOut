@@ -1,7 +1,7 @@
 {
     "levelType": "gray",
     "description": "Добавьте одну спичку,  чтобы исправить уравнение",
-    "extraMatches": 3,
+    "extraMatches": 1,
     "matchSize": "extraSmall",
     "gameplayType": "add",
     "matches": [
