@@ -1,0 +1,198 @@
+{
+    "levelType": "gray",
+    "description":"Добавьте три спички,\nчтобы получилось \nчетыре треугольника",
+    "extraMatches": 3,
+    "matchSize": "small",
+    "gameplayType": "add",
+    "matches": [
+        {
+            "matchType": 0,
+            "x": -200,
+            "y": 170,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 0,
+            "x": 0,
+            "y": 170,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 0,
+            "x": 200,
+            "y": 170,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -150,
+            "y": 80,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": -250,
+            "y": 80,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": -50,
+            "y": 80,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": 50,
+            "y": 80,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": 150,
+            "y": 80,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": 250,
+            "y": 80,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": -100,
+            "y": 0,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 0,
+            "x": 100,
+            "y": 0,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -250,
+            "y": -80,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": -150,
+            "y": -80,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": -50,
+            "y": -80,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": 50,
+            "y": -80,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": 150,
+            "y": -80,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": 250,
+            "y": -80,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": -165,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 0,
+            "x": 0,
+            "y": -165,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 200,
+            "y": -165,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -150,
+            "y": -250,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": -250,
+            "y": -250,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": -50,
+            "y": -250,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": 50,
+            "y": -250,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": 150,
+            "y": -250,
+            "matchAngle": ".pi/6"
+        },
+        {
+            "matchType": 0,
+            "x": 250,
+            "y": -250,
+            "matchAngle": "-.pi/6"
+        },
+        {
+            "matchType": 1,
+            "x": -100,
+            "y": -335,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 100,
+            "y": -335,
+            "matchAngle": ".pi/2"
+        },
+    ],
+    "resolves": [{
+        "matchArray": [          {
+            "matchType": 1,
+            "x": 0,
+            "y": -165,
+            "matchAngle": "-.pi/2"
+        },
+            {
+                "matchType": 1,
+                "x": -50,
+                "y": -80,
+                "matchAngle": "-.pi/6"
+            },
+            {
+                "matchType": 1,
+                "x": 50,
+                "y": -80,
+                "matchAngle": ".pi/6"
+            },
+        ]}
+    ]
+}

@@ -16,6 +16,7 @@ class GameService {
     let numberOfLevelsToShowAds: Int = 4 // Сколько надо пройти, чтобы смотреть рекламу
 //    var userData: UserGameData?
     var inAppPurchaseProduct: SKProduct?
+    var isGameFinishedWithSuccess: Bool = false
     
     init() {
 //        loadCurrentGameStatus()

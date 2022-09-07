@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_3")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_8")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -178,7 +178,7 @@ class GameScene: SKScene {
                     }
             }
         }
-        print("успех")
+        showConfetti()
     }
     
     func checkIfMatchExistsOnBoard(matchToFind: matchModel)->Bool {
@@ -267,5 +267,151 @@ class GameScene: SKScene {
             return nil
         }
     }
+    
+    func showConfetti() {
+        // TEST!!
+        // Сделать это через SpriteNode
+        let lightBackgroundNode = SKSpriteNode.init(color: UIColor.black, size: self.size)
+//        lightBackgroundNode.position = (self.view?.center)!
+        lightBackgroundNode.alpha = 0.85
+        lightBackgroundNode.name = "lightBackground"
+        lightBackgroundNode.zPosition = 15
+        self.addChild(lightBackgroundNode)
+//        let lightBackground = UIView.init(frame: self.frame)
+//        lightBackground.center = (self.view?.center)!
+//        lightBackground.backgroundColor = UIColor.black
+//        lightBackground.alpha = 0.65
+//        lightBackground.tag = 100
+//        self.view?.addSubview(lightBackground)
+        
+        if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
+            let moveAction = SKAction.moveTo(y: 90, duration: 2.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
+            let nextButton = SKSpriteNode.init(imageNamed: "next")
+            nextButton.position = CGPoint.init(x: 0, y: 900)
+            nextButton.size = CGSize.init(width: 200, height: 200)
+            nextButton.color = globalGreenColor//themeLevel.buttonsTintColor
+            nextButton.colorBlendFactor = 1.0
+            nextButton.zPosition = 20
+            self.addChild(nextButton)
+            
+            let smallMovesAction = SKAction.moveTo(y: -30, duration: 3.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
+            
+            let reloadButton = SKSpriteNode.init(imageNamed: "reload")
+            reloadButton.position = CGPoint.init(x: -200, y: 900)
+            reloadButton.size = CGSize.init(width: 150, height: 150)
+            reloadButton.color = globalGreenColor
+            reloadButton.colorBlendFactor = 1.0
+            reloadButton.zPosition = 20
+            self.addChild(reloadButton)
+            reloadButton.run(smallMovesAction) {
+//                let reloadLabel = SKLabelNode.init(text: "PLAY AGAIN")
+//                reloadLabel.fontColor = .white
+//                reloadLabel.fontName = "HelveticaNeue-Medium"
+//                reloadLabel.fontSize = 20
+//                reloadLabel.horizontalAlignmentMode = .center
+//                reloadLabel.zPosition = 20
+//                reloadLabel.position = CGPoint.init(x: reloadButton.position.x, y: reloadButton.frame.minY - 20)
+//                self.addChild(reloadLabel)
+            }
+            
+            let menuButton = SKSpriteNode.init(imageNamed: "menu")
+            menuButton.position = CGPoint.init(x: 200, y: 900)
+            menuButton.size = CGSize.init(width: 150, height: 150)
+            menuButton.color = globalGreenColor//themeLevel.buttonsTintColor
+            menuButton.colorBlendFactor = 1.0
+            menuButton.zPosition = 20
+            self.addChild(menuButton)
+            menuButton.run(smallMovesAction) {
+//                let menuLabel = SKLabelNode.init(text: "MENU")
+//                menuLabel.fontColor = .white
+//                menuLabel.fontName = "HelveticaNeue-Medium"
+//                menuLabel.fontSize = 20
+//                menuLabel.horizontalAlignmentMode = .center
+//                menuLabel.zPosition = 20
+//                menuLabel.position = CGPoint.init(x: menuButton.position.x, y: menuButton.frame.minY - 20)
+//                self.addChild(menuLabel)
+            }
+            
+            nextButton.run(moveAction) {
+                let nextLabel = SKLabelNode.init(text: "NEXT")
+                nextLabel.fontColor = .white
+                nextLabel.fontName = "HelveticaNeue-Medium"
+                nextLabel.fontSize = 20
+                nextLabel.horizontalAlignmentMode = .center
+                nextLabel.zPosition = 20
+                nextLabel.position = CGPoint.init(x: nextButton.position.x, y: nextButton.frame.minY - 20)
+                self.addChild(nextLabel)
+                
+                let menuLabel = SKLabelNode.init(text: "MENU")
+                menuLabel.fontColor = .white
+                menuLabel.fontName = "HelveticaNeue-Medium"
+                menuLabel.fontSize = 20
+                menuLabel.horizontalAlignmentMode = .center
+                menuLabel.zPosition = 20
+                menuLabel.position = CGPoint.init(x: menuButton.position.x, y: menuButton.frame.minY - 20)
+                self.addChild(menuLabel)
+                
+                let reloadLabel = SKLabelNode.init(text: "PLAY AGAIN")
+                reloadLabel.fontColor = .white
+                reloadLabel.fontName = "HelveticaNeue-Medium"
+                reloadLabel.fontSize = 20
+                reloadLabel.horizontalAlignmentMode = .center
+                reloadLabel.zPosition = 20
+                reloadLabel.position = CGPoint.init(x: reloadButton.position.x, y: reloadButton.frame.minY - 20)
+                self.addChild(reloadLabel)
+            }
+            
+            let waitAction = SKAction.wait(forDuration: 1.0)
+            self.run(waitAction) {
+                self.presentSuccess()
+            }
+        }
+        
+        for _ in 0...5 {
+            let confettiView = SwiftConfettiView(frame: self.frame)
+            confettiView.type = .confetti
+            confettiView.intensity = 1.2
+            self.view?.addSubview(confettiView)
+            
+            confettiView.startConfetti()
+        }
+    }
+    
+    func presentSuccess() {
+        let radius = CGFloat(300.0)
+        let circleCenter = CGPoint.zero
 
+        let string = "SUCCESS"
+        let count = string.lengthOfBytes(using: String.Encoding.utf8)
+        let angleIncr = CGFloat.pi/((CGFloat(count)+1) * 2)
+        var angle = 2*CGFloat.pi/3
+        // Loop over the characters in the string
+        for character in string {
+          // Calculate the position of each character
+          let x = cos(angle) * radius + circleCenter.x
+          let y = sin(angle) * radius + circleCenter.y
+          let label = SKLabelNode(fontNamed: "HelveticaNeue-Medium")
+          label.text = "\(character)"
+          label.zPosition = 16
+          label.name = "char"
+          label.position = CGPoint(x: x, y: y)
+          // Determine how much to rotate each character
+          label.zRotation = angle - CGFloat.pi / 2
+          label.fontSize = 50
+          self.addChild(label)
+          angle -= angleIncr
+        }
+    }
+    
+    func removeConfetti() {
+        if let views = self.view?.subviews {
+            for view in views {
+                if let view = view as? SwiftConfettiView {
+                    view.removeFromSuperview()
+                }
+            }
+        }
+        let node = self.childNode(withName: "lightBackground")
+        node?.removeFromParent()
+    }
 }
