@@ -207,6 +207,7 @@ class GameScene: SKScene {
         selectedMatchNode.zRotation = 0
         selectedMatchNode.position = extraNodePositionForIndex(index: gameService?.extraNodesRemain ?? 0)
         selectedMatchNode.name = "extraMatch"
+        selectedMatchNode.canBecomeExtraMatch = false
         if shouldIncrement ?? true {
           gameService?.extraNodesRemain += 1
         } else {
