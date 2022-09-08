@@ -1,5 +1,5 @@
 {
-    "levelType": "red",
+    "levelType": "orange",
     "description":"Добавьте пять спичек,\nчтобы получилось \nпять треугольников",
     "extraMatches": 5,
     "matchSize": "small",

@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_8")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_6")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
