@@ -33,6 +33,7 @@ enum MatchSize: String, Decodable {
 enum LevelGameType: String, Decodable {
     case add           = "add"
     case remove        = "remove"
+    case move          = "move"
 }
 
 /// Структура для парсинга уровней из JSON
@@ -55,4 +56,5 @@ struct matchModel: Decodable {
 
 struct solveModel: Decodable {
     let matchArray: Array<matchModel>
+    let matchArrayReduced: Array<matchModel>?
 }

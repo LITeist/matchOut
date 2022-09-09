@@ -1,9 +1,9 @@
 {
     "levelType": "pink",
     "description": "Переставьте одну спичку,  чтобы получилось два квадрата",
-    "extraMatches": 0,
+    "extraMatches": -1,
     "matchSize": "medium",
-    "gameplayType": "add",
+    "gameplayType": "move",
     "matches": [
         {
             "matchType": 1,
@@ -73,17 +73,78 @@
         },
         {
             "matchType": 1,
-            "x": -250,
+            "x": 250,
             "y": -210,
             "matchAngle": ".pi"
-        },
+        }
     ],
     "resolves": [{
         "matchArray": [{
             "matchType": 1,
-            "x": 0,
-            "y": 120,
+            "x": 125,
+            "y": -320,
             "matchAngle": "-.pi/2"
-        }]}
-    ]
+        },
+            {
+                "matchType": 1,
+                "x": -250,
+                "y": 35,
+                "matchAngle": ".pi"
+            },
+            {
+                "matchType": 1,
+                "x": -125,
+                "y": 160,
+                "matchAngle": "-.pi/2"
+            },
+            {
+                "matchType": 1,
+                "x": 250,
+                "y": 30,
+                "matchAngle": "-.pi"
+            },
+            {
+                "matchType": 1,
+                "x": 125,
+                "y": -80,
+                "matchAngle": ".pi/2"
+            },
+            {
+                "matchType": 1,
+                "x": 125,
+                "y": 160,
+                "matchAngle": "-.pi/2"
+            },
+            {
+                "matchType": 1,
+                "x": 0,
+                "y": -210,
+                "matchAngle": "-.pi"
+            },
+            {
+                "matchType": 1,
+                "x": -125,
+                "y": -320,
+                "matchAngle": "-.pi/2"
+            },
+            {
+                "matchType": 1,
+                "x": -250,
+                "y": -210,
+                "matchAngle": ".pi"
+            },
+            {
+                "matchType": 1,
+                "x": 250,
+                "y": -210,
+                "matchAngle": ".pi"
+            }
+        ],
+    "matchArrayReduced": [{
+                "matchType": 1,
+                "x": 0,
+                "y": 35,
+                "matchAngle": ".pi"
+        }]
+    }]
 }
