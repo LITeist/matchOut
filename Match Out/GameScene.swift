@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_6")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_5")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -182,23 +182,34 @@ class GameScene: SKScene {
                 }
             }
             else {
+                var isSuccess: Bool = false
                 for solve in solvesArray {
-                        for matchModel in solve.matchArray {
-                            if self.levelModel?.gameplayType == .remove {
-                                if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) == false {
-                                    return
-                                }
-                            } else if self.levelModel?.gameplayType == .add {
-                            // Если не проходит проверка хоть раз - break цикла делаем
-                                if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
-                                    return
-                                }
-                            }
-                        }
+                    if isSucceedGameFinished(solve: solve) {
+                        isSuccess = true
+                    }
+                }
+                if !isSuccess {
+                    return
                 }
             }
         }
         showConfetti()
+    }
+    
+    func isSucceedGameFinished(solve: solveModel)->Bool {
+        for matchModel in solve.matchArray {
+            if self.levelModel?.gameplayType == .remove {
+                if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) == false {
+                    return false
+                }
+            } else if self.levelModel?.gameplayType == .add {
+            // Если не проходит проверка хоть раз - break цикла делаем
+                if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
+                    return false
+                }
+            }
+        }
+        return true
     }
     
     func checkIfMatchExistsOnBoard(matchToFind: matchModel)->Bool {

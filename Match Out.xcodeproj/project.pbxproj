@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		56919EED28C8F40D00F3B354 /* level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EEC28C8F40D00F3B354 /* level_5.json */; };
 		56919EEF28C8FD3500F3B354 /* level_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EEE28C8FD3400F3B354 /* level_8.json */; };
-		56919EF128CA064700F3B354 /* level_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EF028CA064700F3B354 /* level_6.json */; };
+		56919EF128CA064700F3B354 /* level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EF028CA064700F3B354 /* level_2.json */; };
 		569E4CD128C3781300A9066A /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E4CD028C3781300A9066A /* GameService.swift */; };
 		569E8AD128AEA4320005D7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E8AD028AEA4320005D7FA /* AppDelegate.swift */; };
 		569E8AD328AEA4320005D7FA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 569E8AD228AEA4320005D7FA /* GameScene.sks */; };
@@ -26,7 +26,7 @@
 		56A7CD0D28BE728500802543 /* MatchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7CD0C28BE728500802543 /* MatchNode.swift */; };
 		56A7CD0F28BE954B00802543 /* LevelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7CD0E28BE954B00802543 /* LevelParser.swift */; };
 		56C47CFB28BFA69300B9980B /* level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFA28BFA69200B9980B /* level_1.json */; };
-		56C47CFD28C001F200B9980B /* level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFC28C001F100B9980B /* level_2.json */; };
+		56C47CFD28C001F200B9980B /* level_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFC28C001F100B9980B /* level_6.json */; };
 		56C47CFF28C1049F00B9980B /* level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFE28C1049F00B9980B /* level_3.json */; };
 		56CA5EC528C64F7900EEB5BA /* level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 56CA5EC428C64F7900EEB5BA /* level_4.json */; };
 		56CA5EC828C7A68400EEB5BA /* SwiftConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CA5EC728C7A68400EEB5BA /* SwiftConfettiView.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		56919EEC28C8F40D00F3B354 /* level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_5.json; sourceTree = "<group>"; };
 		56919EEE28C8FD3400F3B354 /* level_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_8.json; sourceTree = "<group>"; };
-		56919EF028CA064700F3B354 /* level_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_6.json; sourceTree = "<group>"; };
+		56919EF028CA064700F3B354 /* level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_2.json; sourceTree = "<group>"; };
 		569E4CD028C3781300A9066A /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		569E8ACD28AEA4320005D7FA /* Match Out.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Match Out.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		569E8AD028AEA4320005D7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		56A7CD0C28BE728500802543 /* MatchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchNode.swift; sourceTree = "<group>"; };
 		56A7CD0E28BE954B00802543 /* LevelParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelParser.swift; sourceTree = "<group>"; };
 		56C47CFA28BFA69200B9980B /* level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_1.json; sourceTree = "<group>"; };
-		56C47CFC28C001F100B9980B /* level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_2.json; sourceTree = "<group>"; };
+		56C47CFC28C001F100B9980B /* level_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_6.json; sourceTree = "<group>"; };
 		56C47CFE28C1049F00B9980B /* level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_3.json; sourceTree = "<group>"; };
 		56CA5EC428C64F7900EEB5BA /* level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_4.json; sourceTree = "<group>"; };
 		56CA5EC728C7A68400EEB5BA /* SwiftConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftConfettiView.swift; sourceTree = "<group>"; };
@@ -144,11 +144,11 @@
 			children = (
 				56A7CD0728B7992800802543 /* testLevel.json */,
 				56C47CFA28BFA69200B9980B /* level_1.json */,
-				56C47CFC28C001F100B9980B /* level_2.json */,
+				56C47CFC28C001F100B9980B /* level_6.json */,
 				56C47CFE28C1049F00B9980B /* level_3.json */,
 				56CA5EC428C64F7900EEB5BA /* level_4.json */,
 				56919EEC28C8F40D00F3B354 /* level_5.json */,
-				56919EF028CA064700F3B354 /* level_6.json */,
+				56919EF028CA064700F3B354 /* level_2.json */,
 				56919EEE28C8FD3400F3B354 /* level_8.json */,
 			);
 			name = LevelsJSON;
@@ -238,7 +238,7 @@
 			files = (
 				56C47CFF28C1049F00B9980B /* level_3.json in Resources */,
 				56919EEF28C8FD3500F3B354 /* level_8.json in Resources */,
-				56919EF128CA064700F3B354 /* level_6.json in Resources */,
+				56919EF128CA064700F3B354 /* level_2.json in Resources */,
 				569E8ADC28AEA4320005D7FA /* Main.storyboard in Resources */,
 				56A7CD0A28B8032300802543 /* MoreTestScene.sks in Resources */,
 				569E8AD328AEA4320005D7FA /* GameScene.sks in Resources */,
@@ -247,7 +247,7 @@
 				56A7CD0828B7992800802543 /* testLevel.json in Resources */,
 				56C47CFB28BFA69300B9980B /* level_1.json in Resources */,
 				56FCE26228B0F95700307714 /* TestLevelScene.sks in Resources */,
-				56C47CFD28C001F200B9980B /* level_2.json in Resources */,
+				56C47CFD28C001F200B9980B /* level_6.json in Resources */,
 				569E8AE128AEA4350005D7FA /* LaunchScreen.storyboard in Resources */,
 				569E8AD528AEA4320005D7FA /* Actions.sks in Resources */,
 				56CA5EC528C64F7900EEB5BA /* level_4.json in Resources */,

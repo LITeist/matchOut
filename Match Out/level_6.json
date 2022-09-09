@@ -1,150 +1,126 @@
 {
-    "levelType": "pink",
-    "description": "Переставьте одну спичку,  чтобы получилось два квадрата",
-    "extraMatches": -1,
+    "levelType": "green",
+    "description": "Уберите три спички,  чтобы получилось ровно три квадрата",
+    "extraMatches": -3,
     "matchSize": "medium",
-    "gameplayType": "move",
+    "gameplayType": "remove",
     "matches": [
         {
             "matchType": 1,
             "x": 0,
-            "y": 35,
+            "y": 130,
             "matchAngle": "-.pi"
         },
         {
-            "matchType": 0,
-            "x": -125,
-            "y": -90,
-            "matchAngle": "-.pi/2"
-        },
-        {
             "matchType": 1,
-            "x": -250,
-            "y": 35,
+            "x": 240,
+            "y": 130,
             "matchAngle": ".pi"
         },
         {
             "matchType": 1,
-            "x": -125,
-            "y": 160,
+            "x": 130,
+            "y": 250,
             "matchAngle": "-.pi/2"
         },
         {
             "matchType": 1,
-            "x": 250,
-            "y": 30,
-            "matchAngle": "-.pi"
+            "x": 130,
+            "y": 10,
+            "matchAngle": "-.pi/2"
         },
         {
             "matchType": 1,
-            "x": 125,
-            "y": -80,
-            "matchAngle": ".pi/2"
+            "x": -130,
+            "y": -220,
+            "matchAngle": "-.pi/2"
         },
         {
             "matchType": 1,
-            "x": 125,
-            "y": 160,
+            "x": -240,
+            "y": -110,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": -130,
+            "y": 10,
             "matchAngle": "-.pi/2"
         },
         {
             "matchType": 1,
             "x": 0,
-            "y": -210,
+            "y": -110,
             "matchAngle": "-.pi"
         },
         {
             "matchType": 1,
-            "x": -125,
-            "y": -320,
+            "x": 130,
+            "y": -220,
             "matchAngle": "-.pi/2"
         },
         {
             "matchType": 1,
-            "x": -250,
-            "y": -210,
+            "x": 240,
+            "y": -110,
             "matchAngle": ".pi"
         },
         {
-            "matchType": 0,
-            "x": 125,
-            "y": -320,
+            "matchType": 1,
+            "x": 0,
+            "y": -350,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": -130,
+            "y": -460,
             "matchAngle": "-.pi/2"
         },
         {
             "matchType": 1,
-            "x": 250,
-            "y": -210,
+            "x": -240,
+            "y": -350,
             "matchAngle": ".pi"
-        }
+        },
     ],
     "resolves": [{
-        "matchArray": [{
+        "matchArray": [ {
             "matchType": 1,
-            "x": 125,
-            "y": -320,
+            "x": -130,
+            "y": -460,
             "matchAngle": "-.pi/2"
+        },        {
+            "matchType": 1,
+            "x": 0,
+            "y": -350,
+            "matchAngle": "-.pi"
         },
-            {
-                "matchType": 1,
-                "x": -250,
-                "y": 35,
-                "matchAngle": ".pi"
-            },
-            {
-                "matchType": 1,
-                "x": -125,
-                "y": 160,
-                "matchAngle": "-.pi/2"
-            },
-            {
-                "matchType": 1,
-                "x": 250,
-                "y": 30,
-                "matchAngle": "-.pi"
-            },
-            {
-                "matchType": 1,
-                "x": 125,
-                "y": -80,
-                "matchAngle": ".pi/2"
-            },
-            {
-                "matchType": 1,
-                "x": 125,
-                "y": 160,
-                "matchAngle": "-.pi/2"
-            },
-            {
-                "matchType": 1,
-                "x": 0,
-                "y": -210,
-                "matchAngle": "-.pi"
-            },
-            {
-                "matchType": 1,
-                "x": -125,
-                "y": -320,
-                "matchAngle": "-.pi/2"
-            },
-            {
-                "matchType": 1,
-                "x": -250,
-                "y": -210,
-                "matchAngle": ".pi"
-            },
-            {
-                "matchType": 1,
-                "x": 250,
-                "y": -210,
-                "matchAngle": ".pi"
-            }
-        ],
-    "matchArrayReduced": [{
-                "matchType": 1,
-                "x": 0,
-                "y": 35,
-                "matchAngle": ".pi"
+        {
+            "matchType": 1,
+            "x": -240,
+            "y": -350,
+            "matchAngle": "-.pi"
         }]
-    }]
+    },
+        {
+            "matchArray": [ {
+                "matchType": 1,
+                "x": 130,
+                "y": 250,
+                "matchAngle": "-.pi/2"
+            },        {
+                "matchType": 1,
+                "x": 0,
+                "y": 130,
+                "matchAngle": "-.pi"
+            },
+            {
+                "matchType": 1,
+                "x": 240,
+                "y": 130,
+                "matchAngle": "-.pi/2"
+            }]
+        }
+    ]
 }
