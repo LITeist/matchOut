@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_5")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_7")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -38,22 +38,31 @@ class GameScene: SKScene {
             descriptionLabel.fontSize = 43.0
             descriptionLabel.fontColor = themeLevel.textColor
             descriptionLabel.text = self.levelModel?.description
+            descriptionLabel.zPosition = 2
+            if self.levelModel?.levelType == .purple {
+                let backgroundTextView = SKSpriteNode.init(color: globalPurpleColor, size: CGSize.init(width: 800, height: 500))
+                backgroundTextView.position = CGPoint.init(x: 0, y: 550)
+                backgroundTextView.zPosition = 1
+                self.addChild(backgroundTextView)
+            }
             descriptionLabel.position = CGPoint.init(x: 20, y: 320)
             descriptionLabel.numberOfLines = 3
             descriptionLabel.horizontalAlignmentMode = .center
             self.addChild(descriptionLabel)
             // Устанавливаем кнопки
-            bulbButtonNode = SKSpriteNode.init(imageNamed: "bulb")
+            bulbButtonNode = SKSpriteNode.init(imageNamed: ThemeService.bulbImageName(levelType: self.levelModel?.levelType ?? .green))
             bulbButtonNode.position = CGPoint.init(x: -250, y: 560)
             bulbButtonNode.size = CGSize.init(width: 90, height: 90)
             bulbButtonNode.color = themeLevel.buttonsTintColor
             bulbButtonNode.colorBlendFactor = 1
+            bulbButtonNode.zPosition = 3
             self.addChild(bulbButtonNode)
-            menuButtonNode = SKSpriteNode.init(imageNamed: "menuBlue")
+            menuButtonNode = SKSpriteNode.init(imageNamed: ThemeService.menuImageName(levelType: self.levelModel?.levelType ?? .green))
             menuButtonNode.position = CGPoint.init(x: 227, y: 560)
             menuButtonNode.size = CGSize.init(width: 80, height: 80)
             menuButtonNode.color = themeLevel.buttonsTintColor
             menuButtonNode.colorBlendFactor = 1
+            menuButtonNode.zPosition = 3
             self.addChild(menuButtonNode)
             // Запускаем анимацию заднего фона
             startEndlessAnimation()

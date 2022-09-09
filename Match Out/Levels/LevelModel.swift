@@ -18,6 +18,7 @@ enum LevelColorType: String, Decodable {
     case orange        = "orange"
     case gray          = "gray"
     case pink          = "pink"
+    case purple        = "purple"
 }
 
 

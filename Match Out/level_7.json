@@ -1,0 +1,182 @@
+{
+    "levelType": "purple",
+    "description":"Уберите четыре спички,\nчтобы получилось \nпять квадратов",
+    "extraMatches": -5,
+    "matchSize": "small",
+    "gameplayType": "remove",
+    "matches": [
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": 170,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 200,
+            "y": 170,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 0,
+            "y": 170,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -290,
+            "y": 65,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": -100,
+            "y": 65,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": 100,
+            "y": 65,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": 290,
+            "y": 65,
+            "matchAngle": ".pi"
+        },
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": -40,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 200,
+            "y": -40,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 0,
+            "y": -40,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -290,
+            "y": -145,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": -100,
+            "y": -145,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 100,
+            "y": -145,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 290,
+            "y": -145,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": -250,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 200,
+            "y": -250,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 0,
+            "y": -250,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": -290,
+            "y": -355,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": -100,
+            "y": -355,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 100,
+            "y": -355,
+            "matchAngle": "-.pi"
+        },
+        {
+            "matchType": 1,
+            "x": 290,
+            "y": -355,
+            "matchAngle": "-.pi"
+        },
+        
+        {
+            "matchType": 1,
+            "x": -200,
+            "y": -460,
+            "matchAngle": ".pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 200,
+            "y": -460,
+            "matchAngle": "-.pi/2"
+        },
+        {
+            "matchType": 1,
+            "x": 0,
+            "y": -460,
+            "matchAngle": ".pi/2"
+        }
+    ],
+    "resolves": [{
+        "matchArray": [
+            {
+                "matchType": 1,
+                "x": 0,
+                "y": -250,
+                "matchAngle": ".pi/2"
+            },
+            {
+                "matchType": 1,
+                "x": 0,
+                "y": -40,
+                "matchAngle": "-.pi/2"
+            },
+            {
+                "matchType": 1,
+                "x": 100,
+                "y": -145,
+                "matchAngle": "-.pi"
+            },
+            {
+                "matchType": 1,
+                "x": -100,
+                "y": -145,
+                "matchAngle": "-.pi"
+            },
+        ]}
+    ]
+}
