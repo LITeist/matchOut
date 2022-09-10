@@ -56,7 +56,7 @@ class ThemeService {
         if levelType == .purple {
             return "yellowMenu"
         }
-        return "menu"
+        return "menuBlue"
     }
 
 }
