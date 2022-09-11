@@ -26,7 +26,7 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_9")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_5")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -140,10 +140,12 @@ class GameScene: SKScene {
                             childNode.position = selectedMatchNode.position
                             childNode.canBecomeExtraMatch = true
                             self.gameService?.extraNodesRemain -= 1
+                            impactOccured(intense: .light)
                         }
                     } else {
                         if selectedMatchNode.canBecomeExtraMatch {
                             moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode)
+                            impactOccured(intense: .light)
                         }
                 }
                 case .remove,
@@ -152,6 +154,7 @@ class GameScene: SKScene {
                         //  Очень странная, но рабочая логика :)
                         if abs(gameService?.extraNodesRemain ?? 0) - abs(self.levelModel?.extraMatches ?? 0) < abs(self.levelModel?.extraMatches ?? 0)  {
                             moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode, shouldIncrement: false)
+                            impactOccured(intense: .light)
                         }
                     } else if selectedMatchNode.potentailMatch == true {
                         // Вынести в общий блог с параметром shouldIncrement
@@ -161,6 +164,7 @@ class GameScene: SKScene {
                             childNode.canBecomeExtraMatch = true
                             childNode.name = ""
                             self.gameService?.extraNodesRemain += 1
+                            impactOccured(intense: .light)
                         }
                     }
                 //
@@ -173,48 +177,45 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // TODO проверяем сходимость игры
+        var isSuccess: Bool = false
         if let solvesArray = self.levelModel?.resolves {
-            if self.levelModel?.gameplayType == .move {
-                for solve in solvesArray {
-                    for matchModel in solve.matchArray {
-                        if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
-                            return
-                        }
-                    }
-                    if let matchArrayReduces = solve.matchArrayReduced {
-                        for removedModel in matchArrayReduces {
-                            if checkIfMatchNotExistsOnBoard(matchToFind: removedModel) == false {
-                                return
-                            }
-                        }
-                    }
+            for solve in solvesArray {
+                if isSucceedGameFinished(solve: solve) {
+                    isSuccess = true
                 }
             }
-            else {
-                var isSuccess: Bool = false
-                for solve in solvesArray {
-                    if isSucceedGameFinished(solve: solve) {
-                        isSuccess = true
-                    }
-                }
-                if !isSuccess {
-                    return
-                }
+            if !isSuccess {
+                return
             }
         }
         showConfetti()
     }
     
     func isSucceedGameFinished(solve: solveModel)->Bool {
-        for matchModel in solve.matchArray {
-            if self.levelModel?.gameplayType == .remove {
-                if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) == false {
-                    return false
-                }
-            } else if self.levelModel?.gameplayType == .add {
-            // Если не проходит проверка хоть раз - break цикла делаем
+        if self.levelModel?.gameplayType == .move {
+            for matchModel in solve.matchArray {
                 if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
                     return false
+                }
+            }
+            if let matchArrayReduces = solve.matchArrayReduced {
+                for removedModel in matchArrayReduces {
+                    if checkIfMatchNotExistsOnBoard(matchToFind: removedModel) == false {
+                        return false
+                    }
+                }
+            }
+        } else {
+            for matchModel in solve.matchArray {
+                if self.levelModel?.gameplayType == .remove {
+                    if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) == false {
+                        return false
+                    }
+                } else if self.levelModel?.gameplayType == .add {
+                // Если не проходит проверка хоть раз - break цикла делаем
+                    if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
+                        return false
+                    }
                 }
             }
         }
@@ -452,5 +453,10 @@ class GameScene: SKScene {
         }
         let node = self.childNode(withName: "lightBackground")
         node?.removeFromParent()
+    }
+    
+    func impactOccured(intense: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: intense)
+        generator.impactOccurred()
     }
 }

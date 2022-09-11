@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		56013EEF28CCFE9B00BCABC3 /* level_9.json in Resources */ = {isa = PBXBuildFile; fileRef = 56013EEE28CCFE9B00BCABC3 /* level_9.json */; };
+		56013EF328CD0B5500BCABC3 /* level_10.json in Resources */ = {isa = PBXBuildFile; fileRef = 56013EF228CD0B5500BCABC3 /* level_10.json */; };
 		56919EED28C8F40D00F3B354 /* level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EEC28C8F40D00F3B354 /* level_5.json */; };
 		56919EEF28C8FD3500F3B354 /* level_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EEE28C8FD3400F3B354 /* level_8.json */; };
 		56919EF128CA064700F3B354 /* level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EF028CA064700F3B354 /* level_2.json */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		56013EEE28CCFE9B00BCABC3 /* level_9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_9.json; sourceTree = "<group>"; };
+		56013EF228CD0B5500BCABC3 /* level_10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_10.json; sourceTree = "<group>"; };
 		56919EEC28C8F40D00F3B354 /* level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_5.json; sourceTree = "<group>"; };
 		56919EEE28C8FD3400F3B354 /* level_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_8.json; sourceTree = "<group>"; };
 		56919EF028CA064700F3B354 /* level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_2.json; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				56919EF228CBCFA100F3B354 /* level_7.json */,
 				56919EEE28C8FD3400F3B354 /* level_8.json */,
 				56013EEE28CCFE9B00BCABC3 /* level_9.json */,
+				56013EF228CD0B5500BCABC3 /* level_10.json */,
 			);
 			name = LevelsJSON;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				569E8AD328AEA4320005D7FA /* GameScene.sks in Resources */,
 				56919EED28C8F40D00F3B354 /* level_5.json in Resources */,
 				569E8ADE28AEA4350005D7FA /* Assets.xcassets in Resources */,
+				56013EF328CD0B5500BCABC3 /* level_10.json in Resources */,
 				56A7CD0828B7992800802543 /* testLevel.json in Resources */,
 				56C47CFB28BFA69300B9980B /* level_1.json in Resources */,
 				56013EEF28CCFE9B00BCABC3 /* level_9.json in Resources */,
