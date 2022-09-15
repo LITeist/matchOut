@@ -105,6 +105,12 @@ class GameScene: SKScene {
             }
             gameService?.extraNodesRemain = self.levelModel?.extraMatches ?? 0
         }
+        
+        let matchTest: MatchForm = MatchForm.triangle(type: .red, matchSize: .extraSmall)
+        matchTest.position = CGPoint.zero
+        matchTest.zRotation = MatchNode().floatAngleFromString(stringAngle:"-.pi/6")
+        matchTest.alpha = 0.5
+        self.addChild(matchTest)
     }
     
     func startEndlessAnimation() {
