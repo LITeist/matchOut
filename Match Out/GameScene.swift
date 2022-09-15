@@ -106,10 +106,10 @@ class GameScene: SKScene {
             gameService?.extraNodesRemain = self.levelModel?.extraMatches ?? 0
         }
         
-        let matchTest: MatchForm = MatchForm.triangle(type: .red, matchSize: .extraSmall)
+        let matchTest: MatchForm = MatchForm.triangleWithHandler(type: .red, matchSize: .extraSmallMenu)
         matchTest.position = CGPoint.zero
-        matchTest.zRotation = MatchNode().floatAngleFromString(stringAngle:"-.pi/6")
-        matchTest.alpha = 0.5
+//        matchTest.zRotation = MatchNode().floatAngleFromString(stringAngle:"-.pi/6")
+//        matchTest.alpha = 0.6
         self.addChild(matchTest)
     }
     

@@ -24,10 +24,11 @@ enum LevelColorType: String, Decodable {
 
 /// Размер спички на уровне
 enum MatchSize: String, Decodable {
-    case extraSmall   = "extraSmall"
-    case small        = "small"
-    case medium       = "medium"
-    case big          = "big"
+    case extraSmallMenu  = "extraSmallMenu"
+    case extraSmall      = "extraSmall"
+    case small           = "small"
+    case medium          = "medium"
+    case big             = "big"
 }
 
 /// Тип игрового уровня - можно только убирать спички или добавлять/убирать

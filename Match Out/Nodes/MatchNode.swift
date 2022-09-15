@@ -44,6 +44,8 @@ class MatchNode: SKSpriteNode {
         }
         var size: CGSize
         switch matchSize {
+        case .extraSmallMenu:
+            size = CGSize.init(width: 28.3, height: 100)
         case .extraSmall:
             size = CGSize.init(width: 42.4, height: 150)
         case .small:
