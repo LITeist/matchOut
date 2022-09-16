@@ -14,9 +14,21 @@ class FormGenerator {
     var canBecomeExtraMatch: Bool = false // Можно ли убрать спичку при нажатии в доступные спички
     var isSelectedMatch: Bool = false // Выбрана ли спичка в моменте
 
-    static func generateMatchForm()->MatchForm {
-        return MatchForm()
+    static func generateRandomMatchForm(type: MatchType)->MatchForm {
+        let randomValue = Int.random(in: 0..<6)
+        switch randomValue {
+        case 0:
+            return MatchForm.triangle(type: type, matchSize: .extraSmallMenu)
+        case 1:
+            return MatchForm.bigTwoPartTriangle(type: type, matchSize: .extraSmallMenu)
+        case 2:
+            return MatchForm.squareWithHandle(type: type, matchSize: .extraSmallMenu)
+        case 3:
+            return MatchForm.twoSquares(type: type, matchSize: .extraSmallMenu)
+        case 4:
+            return MatchForm.twoTriangles(type: type, matchSize: .extraSmallMenu)
+        default:
+            return MatchForm.triangleWithHandler(type: type, matchSize: .extraSmallMenu)
+        }
     }
-    
-    
 }

@@ -99,18 +99,12 @@ class GameScene: SKScene {
                     }
                     let matchNode = MatchNode.init(type: matchType, matchSize: self.levelModel?.matchSize ?? .small)
                     matchNode.position = CGPoint.init(x: CGFloat(-280 + i*40), y: self.frame.minY + 20)
-                    matchNode.name = "extraMatch"
+                    matchNode.name = "extrMatch"
                     self.addChild(matchNode)
                 }
             }
             gameService?.extraNodesRemain = self.levelModel?.extraMatches ?? 0
         }
-        
-        let matchTest: MatchForm = MatchForm.triangleWithHandler(type: .red, matchSize: .extraSmallMenu)
-        matchTest.position = CGPoint.zero
-//        matchTest.zRotation = MatchNode().floatAngleFromString(stringAngle:"-.pi/6")
-//        matchTest.alpha = 0.6
-        self.addChild(matchTest)
     }
     
     func startEndlessAnimation() {

@@ -27,6 +27,7 @@ class MatchForm: SKNode {
         matchNode3.zRotation = matchNode3.floatAngleFromString(stringAngle: "-.pi/2")
         matchNode3.position = CGPoint.init(x: 0, y: -40)
         baseForm.addChild(matchNode3)
+        baseForm.name = "triangle"
         return baseForm
     }
 
@@ -56,13 +57,14 @@ class MatchForm: SKNode {
         matchNode5.position = CGPoint.init(x: 68, y: -80)
         baseForm.addChild(matchNode5)
         let matchNode6 = MatchNode.init(type: type, matchSize: matchSize)
-        matchNode6.zRotation = matchNode3.floatAngleFromString(stringAngle: ".pi/2")
+        matchNode6.zRotation = matchNode3.floatAngleFromString(stringAngle: "-.pi/2")
         matchNode6.position = CGPoint.init(x: -42, y: -120)
         baseForm.addChild(matchNode6)
         let matchNode7 = MatchNode.init(type: type, matchSize: matchSize)
         matchNode7.zRotation = matchNode3.floatAngleFromString(stringAngle: "-.pi/2")
         matchNode7.position = CGPoint.init(x: 42, y: -120)
         baseForm.addChild(matchNode7)
+        baseForm.name = "bigTwoPartTriangle"
         return baseForm
     }
     
@@ -95,6 +97,7 @@ class MatchForm: SKNode {
         matchNode5.position = CGPoint.init(x: 0, y: -130)
         baseForm.addChild(matchNode5)
         
+        baseForm.name = "squareWithHandle"
         return baseForm
     }
     
@@ -137,6 +140,7 @@ class MatchForm: SKNode {
         matchNode7.position = CGPoint.init(x: 150, y: -85)
         baseForm.addChild(matchNode7)
         
+        baseForm.name = "twoSquares"
         return baseForm
     }
     
@@ -166,6 +170,7 @@ class MatchForm: SKNode {
         matchNode5.position = CGPoint.init(x: 50, y: 40)
         baseForm.addChild(matchNode5)
         
+        baseForm.name = "twoTriangles"
         return baseForm
     }
 
@@ -187,6 +192,8 @@ class MatchForm: SKNode {
         matchNode4.zRotation = matchNode4.floatAngleFromString(stringAngle: "-.pi/2")
         matchNode4.position = CGPoint.init(x: 93, y: -40)
         baseForm.addChild(matchNode4)
+        
+        baseForm.name = "triangleWithHandler"
         return baseForm
     }
 }
