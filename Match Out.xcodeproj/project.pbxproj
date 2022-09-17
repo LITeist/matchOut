@@ -39,6 +39,7 @@
 		56D1E8DC28D0D285003E3594 /* MatchForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E8DB28D0D285003E3594 /* MatchForm.swift */; };
 		56D1E8DF28D0D375003E3594 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E8DE28D0D375003E3594 /* MenuButton.swift */; };
 		56D1E8E128D39BBE003E3594 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E8E028D39BBE003E3594 /* MenuScene.swift */; };
+		56D1E8E328D5BF4C003E3594 /* SKAdvancedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E8E228D5BF4C003E3594 /* SKAdvancedLabelNode.swift */; };
 		56FCE26228B0F95700307714 /* TestLevelScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56FCE26128B0F95700307714 /* TestLevelScene.sks */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		56D1E8DB28D0D285003E3594 /* MatchForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchForm.swift; sourceTree = "<group>"; };
 		56D1E8DE28D0D375003E3594 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		56D1E8E028D39BBE003E3594 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		56D1E8E228D5BF4C003E3594 /* SKAdvancedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKAdvancedLabelNode.swift; path = "Match Out/SKAdvancedLabelNode.swift"; sourceTree = SOURCE_ROOT; };
 		56FCE26128B0F95700307714 /* TestLevelScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestLevelScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				56A7CD0C28BE728500802543 /* MatchNode.swift */,
+				56D1E8E228D5BF4C003E3594 /* SKAdvancedLabelNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				56A7CD0D28BE728500802543 /* MatchNode.swift in Sources */,
 				569E8AD728AEA4320005D7FA /* GameScene.swift in Sources */,
 				56D1E8E128D39BBE003E3594 /* MenuScene.swift in Sources */,
+				56D1E8E328D5BF4C003E3594 /* SKAdvancedLabelNode.swift in Sources */,
 				56A7CD0F28BE954B00802543 /* LevelParser.swift in Sources */,
 				56CA5ECB28C888D200EEB5BA /* SpriteKit-Spring.swift in Sources */,
 				56A7CD0228B694D800802543 /* ThemeService.swift in Sources */,

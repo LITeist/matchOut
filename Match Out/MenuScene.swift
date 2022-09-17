@@ -22,7 +22,7 @@ class MenuScene: SKScene {
 
         self.gameService = GameService()
         // TODO тут загружать последний актуальный уровень
-        self.levelModel = LevelParser().loadLevel(levelName: "level_7")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_4")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -34,13 +34,22 @@ class MenuScene: SKScene {
             // И анимацию спичек
             startMatchAnimation()
             // Вот тут расставляем элементы управления. В нашем кейсе - запускаем спички
-            let menuButton = MenuButton.init(size: .medium, title: "Start Game", type: themeLevel.matchType)
+            let menuButton = MenuButton.init(size: .medium, title: "Start  Game", type: themeLevel.matchType)
             menuButton.zPosition = 1
             menuButton.position = CGPoint.init(x: 0, y: 1200)
             self.addChild(menuButton)
             
-            let moveAction = SKAction.moveTo(y: 90, duration: 2.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
-            menuButton.run(moveAction)
+            let adsButton = MenuButton.init(size: .small, title: "", type: themeLevel.matchType)
+            adsButton.zPosition = 1
+            adsButton.position =  CGPoint.init(x: 0, y: 1100)
+            self.addChild(adsButton)
+            
+            let moveAction = SKAction.moveTo(y: 100, duration: 2.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
+            let adsMoveAction = SKAction.moveTo(y: -120, duration: 2.5, delay: 0.3, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.6)
+            menuButton.run(moveAction) {
+                menuButton.startAnimation()
+            }
+            adsButton.run(adsMoveAction)
         }
     }
     
