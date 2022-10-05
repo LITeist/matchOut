@@ -17,12 +17,13 @@ class MenuScene: SKScene {
 //    var menuButtonNode: SKSpriteNode = SKSpriteNode()
     var levelModel: LevelModel?
     var gameService: GameService?
+    var settingsButton: SKSpriteNode = SKSpriteNode()
     
     override func didMove(to view: SKView) {
 
         self.gameService = GameService()
         // TODO тут загружать последний актуальный уровень
-        self.levelModel = LevelParser().loadLevel(levelName: "level_4")
+        self.levelModel = LevelParser().loadLevel(levelName: "level_1")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -34,6 +35,37 @@ class MenuScene: SKScene {
             // И анимацию спичек
             startMatchAnimation()
             // Вот тут расставляем элементы управления. В нашем кейсе - запускаем спички
+            // TODO проверяем вращение для кнопки 'Настройки'
+            settingsButton = SKSpriteNode.init(imageNamed: "settingsBlue")
+            settingsButton.size = CGSize.init(width: 100, height: 100)
+            settingsButton.position = CGPoint.init(x: -190, y: -562)
+            settingsButton.colorBlendFactor = 0.4
+            settingsButton.color = globalBlueColor
+            settingsButton.name = "settings"
+            self.addChild(settingsButton)
+            
+            // Кнопка выбора уровней
+            let levelSelectButton = SKSpriteNode.init(imageNamed: "menuBlue")
+            levelSelectButton.size = CGSize.init(width: 100, height: 100)
+            levelSelectButton.position = CGPoint.init(x: 190, y: -562)
+            levelSelectButton.colorBlendFactor = 0.4
+            levelSelectButton.color = globalBlueColor
+            self.addChild(levelSelectButton)
+            
+            // Размещаем монетки и сумму, для теста. Анимируем монетки
+            let currentMoney = SKSpriteNode.init(imageNamed: "Gold_21")
+            currentMoney.size = CGSize.init(width: 50, height: 50)
+            currentMoney.position = CGPoint.init(x: 135, y: 575)
+            self.addChild(currentMoney)
+            let moneyLabel = SKLabelNode.init(text: "2000")
+            moneyLabel.fontSize = 50
+            moneyLabel.fontName = "HelveticaNeue-Medium"
+            moneyLabel.position = CGPoint.init(x: 226, y: 556)
+            moneyLabel.fontColor = globalBlueColor
+            self.addChild(moneyLabel)
+            self.animateMoneySprite(moneySprite: currentMoney)
+            
+            // Размещаем главные кнопки
             let menuButton = MenuButton.init(size: .medium, title: "Start  Game", type: themeLevel.matchType)
             menuButton.zPosition = 1
             menuButton.position = CGPoint.init(x: 0, y: 1200)
@@ -44,12 +76,43 @@ class MenuScene: SKScene {
             adsButton.position =  CGPoint.init(x: 0, y: 1100)
             self.addChild(adsButton)
             
+            // TODO тут выбирать иконку другую
+            let presentIcon = SKSpriteNode.init(imageNamed: "presentBlue")
+            presentIcon.zPosition = 2
+            presentIcon.size = CGSize.init(width: 90, height: 90)
+            adsButton.addChild(presentIcon)
+            // Делаем анимацию прыжков подарка
+            let rotateAction = SKAction.rotate(byAngle: .pi/20, duration: 0.1)
+            let jumpActionUp = SKAction.moveBy(x: -3, y: 3, duration: 0.2)
+            let jumpActionDown = SKAction.moveBy(x: 3, y: -3, duration: 0.2)
+            let rotateActionBack = SKAction.rotate(byAngle: -.pi/20, duration: 0.1)
+            let wait = SKAction.wait(forDuration: 0.5)
+            //
+            let rotateActionRight = SKAction.rotate(byAngle: -.pi/20, duration: 0.1)
+            let jumpActionUpRight = SKAction.moveBy(x: 3, y: 3, duration: 0.2)
+            let jumpActionDownRight = SKAction.moveBy(x: -3, y: -3, duration: 0.2)
+            let rotateActionBackRight = SKAction.rotate(byAngle: .pi/20, duration: 0.1)
+            // Анимируем подарок
+            let moveLoop = SKAction.sequence([rotateAction, jumpActionUp, jumpActionDown, rotateActionBack, wait, rotateActionRight, jumpActionUpRight, jumpActionDownRight, rotateActionBackRight, wait])
+            let moveForever = SKAction.repeatForever(moveLoop)
+            presentIcon.run(moveForever)
+            
             let moveAction = SKAction.moveTo(y: 100, duration: 2.5, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
             let adsMoveAction = SKAction.moveTo(y: -120, duration: 2.5, delay: 0.3, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.6)
             menuButton.run(moveAction) {
                 menuButton.startAnimation()
             }
             adsButton.run(adsMoveAction)
+        }
+    }
+    
+    func animateMoneySprite(moneySprite: SKSpriteNode) {
+        let moneyAnimation = SKAction.scale(to: 1.05, duration: 3, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0)
+        let moneyBackAnimation = SKAction.scale(to: 1, duration: 3, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0)
+        moneySprite.run(moneyAnimation) {
+            moneySprite.run(moneyBackAnimation) {
+                self.animateMoneySprite(moneySprite: moneySprite)
+            }
         }
     }
     
@@ -91,7 +154,6 @@ class MenuScene: SKScene {
         let xMoveBack = CGFloat(matchToAnimate.position.x > 0 ? abs(getRandomXPositionForMatchForm())*2 : -abs(getRandomXPositionForMatchForm())*2)
         
         let randomDelay = CGFloat(Int.random(in: 0..<10))
-        print(randomDelay)
         let moveDelay = SKAction.wait(forDuration: randomDelay)
         let moveAction = SKAction.moveBy(x: xMove, y: yMove, duration: getRandomDuration())
         let moveBack = SKAction.moveBy(x: xMoveBack, y: -yMove, duration: getRandomDuration())
@@ -159,5 +221,28 @@ class MenuScene: SKScene {
         default:
             return "-.pi/6"
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // При нажатии на 'настройки' временно увеличиваем ей zPosition, вращаем, затемняем весь экран и выводим элементы настроек (spring со scale)
+        if let backgroundNode = self.childNode(withName: "settingsBackground") as? SKSpriteNode {
+            let fadeAnimation = SKAction.fadeAlpha(to: 0, duration: 0.75)
+            backgroundNode.run(fadeAnimation) {
+                backgroundNode.removeFromParent()
+            }
+        } else  {
+            let shapeBackgroundNode = SKSpriteNode.init(color: .black, size: self.size)
+            shapeBackgroundNode.alpha = 0.0
+            shapeBackgroundNode.zPosition = 50
+            shapeBackgroundNode.name = "settingsBackground"
+            settingsButton.zPosition = 51
+            self.addChild(shapeBackgroundNode)
+            
+            let fadeAnimation = SKAction.fadeAlpha(to: 0.95, duration: 0.75)
+            shapeBackgroundNode.run(fadeAnimation)
+        }
+
+        let rotateAction = SKAction.rotate(byAngle: MatchNode().floatAngleFromString(stringAngle: ".pi"), duration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
+        settingsButton.run(rotateAction)
     }
 }
