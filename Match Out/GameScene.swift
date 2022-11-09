@@ -16,6 +16,7 @@ class GameScene: SKScene {
     var menuButtonNode: SKSpriteNode = SKSpriteNode()
     var levelModel: LevelModel?
     var gameService: GameService?
+    var isLevelFinished: Bool = false
     
     override func didMove(to view: SKView) {
         // TODO проверяем текущий уровень
@@ -26,7 +27,12 @@ class GameScene: SKScene {
         // Второй шаг - поправить уровень в JSON на основе собранного кода -
         // Третий шаг - парсим уровень
         self.gameService = GameService()
-        self.levelModel = LevelParser().loadLevel(levelName: "level_5")
+        prepareLevel()
+        self.removeConfetti()
+    }
+    
+    func prepareLevel() {
+        self.levelModel = LevelParser().loadLevel(levelName: gameService?.getUserLevel() ?? "level_1")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -63,6 +69,7 @@ class GameScene: SKScene {
             menuButtonNode.color = themeLevel.buttonsTintColor
             menuButtonNode.colorBlendFactor = 1
             menuButtonNode.zPosition = 3
+            menuButtonNode.name = "menuButton"
             self.addChild(menuButtonNode)
             // Запускаем анимацию заднего фона
             startEndlessAnimation()
@@ -99,7 +106,7 @@ class GameScene: SKScene {
                     }
                     let matchNode = MatchNode.init(type: matchType, matchSize: self.levelModel?.matchSize ?? .small)
                     matchNode.position = CGPoint.init(x: CGFloat(-280 + i*40), y: self.frame.minY + 20)
-                    matchNode.name = "extrMatch"
+                    matchNode.name = "extraMatch"
                     self.addChild(matchNode)
                 }
             }
@@ -118,6 +125,15 @@ class GameScene: SKScene {
     
     // Про движения
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Проверяем кнопки меню
+        let touch = touches.first as UITouch?
+        if let touchLocation = touch?.location(in: self) {
+            if let targetNode = atPoint(touchLocation) as? SKSpriteNode {
+                if targetNode.name == "menuButton" {
+                    self.goToMenu()
+                }
+            }
+        }
         // Проверяем, можно ли добавить или убрать спичку
         // Если можно убирать и спичка настоящая - убираем, иначе ничего не делаем
         // Если можно добавлять, есть спички и нажатая сейчас с спичка - плейсхолджер - переносим. Иначе ничего не делаем
@@ -125,16 +141,6 @@ class GameScene: SKScene {
             switch levelModel?.gameplayType {
                 case .add:
                     if selectedMatchNode.potentailMatch == true {
-//                        enumerateChildNodes(withName: "extraMatch") {
-//                            (node, stop) in
-//                            node.zRotation = selectedMatchNode.zRotation
-//                            node.position = selectedMatchNode.position
-//                            node.name = ""
-//                            if let matchMode = node as? MatchNode {
-//                                matchMode.canBecomeExtraMatch = true
-//                                self.gameService?.extraNodesRemain -= 1
-//                            }
-//                            stop.initialize(to: true)
                         if let childNode = getExtraNodeForIndex(index: self.gameService?.extraNodesRemain ?? 0) {
                             childNode.zRotation = selectedMatchNode.zRotation
                             childNode.position = selectedMatchNode.position
@@ -167,10 +173,8 @@ class GameScene: SKScene {
                             impactOccured(intense: .light)
                         }
                     }
-                //
                 case .none:
                     break
-                //
             }
         }
     }
@@ -188,7 +192,68 @@ class GameScene: SKScene {
                 return
             }
         }
-        showConfetti()
+        // Вот тут мы понимаем, что игра сошлась - надо бы еще пообрабатывать нажатия
+        if !self.isLevelFinished {
+            self.isLevelFinished = true
+            showConfetti()
+        } else  {
+            let touch = touches.first as UITouch?
+            if let touchLocation = touch?.location(in: self) {
+                if let targetNode = atPoint(touchLocation) as? SKSpriteNode {
+                    if targetNode.name == "next" {
+                        // сначала убираем кнопки
+                        // потом запускаем новый уровень
+                        self.isLevelFinished = false
+                        self.gameService?.incrementUserLevel()
+                        self.removeMenuButtons()
+                    }
+                    else if targetNode.name == "reload" {
+                        self.isLevelFinished = false
+                        self.reloadLevel()
+                    } else if targetNode.name == "menu" {
+                        self.goToMenu()
+                    }
+                }
+            }
+        }
+    }
+    
+    func reloadLevel() {
+        self.removeMenuButtons()
+    }
+    
+    func removeMenuButtons() {
+        // Сначала убираем все Label
+        for child in self.children {
+            if child.isKind(of: SKLabelNode.self) {
+                child.removeFromParent()
+            }
+        }
+        // Потом анимации с кнопками
+        if let menuButton = self.childNode(withName: "menu") {
+            if let reloadButton = self.childNode(withName: "reload") {
+                if let nextButton = self.childNode(withName: "next") {
+                    let moveAction = SKAction.moveTo(y: 900, duration: 1.0, delay: 0.3, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.3)
+                    let smallMovesAction = SKAction.moveTo(y: 900, duration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.3)
+                    menuButton.run(smallMovesAction)
+                    reloadButton.run(smallMovesAction)
+                    nextButton.run(moveAction) {
+                        self.removeConfetti()
+                        self.removeAllChildren()
+                        self.prepareLevel()
+                    }
+                }
+            }
+        }
+    }
+    
+    func goToMenu() {
+        let menuScene = MenuScene(fileNamed: "MenuScene")!
+        menuScene.scaleMode = SKSceneScaleMode.aspectFill
+        if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {
+            let transition = SKTransition(ciFilter: filter, duration: 0.5)
+            self.view?.presentScene(menuScene, transition: transition)
+        }
     }
     
     func isSucceedGameFinished(solve: solveModel)->Bool {
@@ -319,18 +384,13 @@ class GameScene: SKScene {
         lightBackgroundNode.name = "lightBackground"
         lightBackgroundNode.zPosition = 15
         self.addChild(lightBackgroundNode)
-//        let lightBackground = UIView.init(frame: self.frame)
-//        lightBackground.center = (self.view?.center)!
-//        lightBackground.backgroundColor = UIColor.black
-//        lightBackground.alpha = 0.65
-//        lightBackground.tag = 100
-//        self.view?.addSubview(lightBackground)
-        
+
         let moveAction = SKAction.moveTo(y: 90, duration: 2.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
         let nextButton = SKSpriteNode.init(imageNamed: "next")
         nextButton.position = CGPoint.init(x: 0, y: 900)
         nextButton.size = CGSize.init(width: 200, height: 200)
-        nextButton.color = globalGreenColor//themeLevel.buttonsTintColor
+        nextButton.color = globalGreenColor
+        nextButton.name = "next"
         nextButton.colorBlendFactor = 1.0
         nextButton.zPosition = 20
         self.addChild(nextButton)
@@ -343,6 +403,7 @@ class GameScene: SKScene {
         reloadButton.color = globalGreenColor
         reloadButton.colorBlendFactor = 1.0
         reloadButton.zPosition = 20
+        reloadButton.name = "reload"
         self.addChild(reloadButton)
         reloadButton.run(smallMovesAction) {
 //                let reloadLabel = SKLabelNode.init(text: "PLAY AGAIN")
@@ -361,6 +422,7 @@ class GameScene: SKScene {
         menuButton.color = globalGreenColor//themeLevel.buttonsTintColor
         menuButton.colorBlendFactor = 1.0
         menuButton.zPosition = 20
+        menuButton.name = "menu"
         self.addChild(menuButton)
         menuButton.run(smallMovesAction) {
 //                let menuLabel = SKLabelNode.init(text: "MENU")

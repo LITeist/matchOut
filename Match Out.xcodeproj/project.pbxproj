@@ -29,6 +29,7 @@
 		56A7CD0A28B8032300802543 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56A7CD0928B8032300802543 /* MenuScene.sks */; };
 		56A7CD0D28BE728500802543 /* MatchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7CD0C28BE728500802543 /* MatchNode.swift */; };
 		56A7CD0F28BE954B00802543 /* LevelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7CD0E28BE954B00802543 /* LevelParser.swift */; };
+		56AC32DE2913CEAF008A209C /* UserGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC32DD2913CEAF008A209C /* UserGameData.swift */; };
 		56C47CFB28BFA69300B9980B /* level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFA28BFA69200B9980B /* level_1.json */; };
 		56C47CFD28C001F200B9980B /* level_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFC28C001F100B9980B /* level_6.json */; };
 		56C47CFF28C1049F00B9980B /* level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 56C47CFE28C1049F00B9980B /* level_3.json */; };
@@ -67,6 +68,7 @@
 		56A7CD0928B8032300802543 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		56A7CD0C28BE728500802543 /* MatchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchNode.swift; sourceTree = "<group>"; };
 		56A7CD0E28BE954B00802543 /* LevelParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelParser.swift; sourceTree = "<group>"; };
+		56AC32DD2913CEAF008A209C /* UserGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGameData.swift; sourceTree = "<group>"; };
 		56C47CFA28BFA69200B9980B /* level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_1.json; sourceTree = "<group>"; };
 		56C47CFC28C001F100B9980B /* level_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_6.json; sourceTree = "<group>"; };
 		56C47CFE28C1049F00B9980B /* level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_3.json; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				569E4CD028C3781300A9066A /* GameService.swift */,
+				56AC32DD2913CEAF008A209C /* UserGameData.swift */,
 			);
 			name = GameService;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56AC32DE2913CEAF008A209C /* UserGameData.swift in Sources */,
 				56A7CD0528B6951800802543 /* LevelModel.swift in Sources */,
 				56A7CD0D28BE728500802543 /* MatchNode.swift in Sources */,
 				569E8AD728AEA4320005D7FA /* GameScene.swift in Sources */,

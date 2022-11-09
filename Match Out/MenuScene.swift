@@ -18,12 +18,13 @@ class MenuScene: SKScene {
     var levelModel: LevelModel?
     var gameService: GameService?
     var settingsButton: SKSpriteNode = SKSpriteNode()
+    let gameScene = GameScene(fileNamed: "GameScene")!
     
     override func didMove(to view: SKView) {
 
         self.gameService = GameService()
         // TODO тут загружать последний актуальный уровень
-        self.levelModel = LevelParser().loadLevel(levelName: "level_1")
+        self.levelModel = LevelParser().loadLevel(levelName: gameService?.getUserLevel() ?? "level_1")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
             backgroundImage = themeLevel.backgroundLevelSprite
@@ -69,6 +70,7 @@ class MenuScene: SKScene {
             let menuButton = MenuButton.init(size: .medium, title: "Start  Game", type: themeLevel.matchType)
             menuButton.zPosition = 1
             menuButton.position = CGPoint.init(x: 0, y: 1200)
+            menuButton.name = "StartGame"
             self.addChild(menuButton)
             
             let adsButton = MenuButton.init(size: .small, title: "", type: themeLevel.matchType)
@@ -82,16 +84,16 @@ class MenuScene: SKScene {
             presentIcon.size = CGSize.init(width: 90, height: 90)
             adsButton.addChild(presentIcon)
             // Делаем анимацию прыжков подарка
-            let rotateAction = SKAction.rotate(byAngle: .pi/20, duration: 0.1)
-            let jumpActionUp = SKAction.moveBy(x: -3, y: 3, duration: 0.2)
-            let jumpActionDown = SKAction.moveBy(x: 3, y: -3, duration: 0.2)
-            let rotateActionBack = SKAction.rotate(byAngle: -.pi/20, duration: 0.1)
-            let wait = SKAction.wait(forDuration: 0.5)
+            let rotateAction = SKAction.rotate(byAngle: .pi/40, duration: 0.05)
+            let jumpActionUp = SKAction.moveBy(x: -1, y: 1, duration: 0.1)
+            let jumpActionDown = SKAction.moveBy(x: 1, y: -1, duration: 0.1)
+            let rotateActionBack = SKAction.rotate(byAngle: -.pi/40, duration: 0.05)
+            let wait = SKAction.wait(forDuration: 0.1)
             //
-            let rotateActionRight = SKAction.rotate(byAngle: -.pi/20, duration: 0.1)
-            let jumpActionUpRight = SKAction.moveBy(x: 3, y: 3, duration: 0.2)
-            let jumpActionDownRight = SKAction.moveBy(x: -3, y: -3, duration: 0.2)
-            let rotateActionBackRight = SKAction.rotate(byAngle: .pi/20, duration: 0.1)
+            let rotateActionRight = SKAction.rotate(byAngle: -.pi/40, duration: 0.05)
+            let jumpActionUpRight = SKAction.moveBy(x: 1, y: 1, duration: 0.1)
+            let jumpActionDownRight = SKAction.moveBy(x: -1, y: -1, duration: 0.1)
+            let rotateActionBackRight = SKAction.rotate(byAngle: .pi/40, duration: 0.05)
             // Анимируем подарок
             let moveLoop = SKAction.sequence([rotateAction, jumpActionUp, jumpActionDown, rotateActionBack, wait, rotateActionRight, jumpActionUpRight, jumpActionDownRight, rotateActionBackRight, wait])
             let moveForever = SKAction.repeatForever(moveLoop)
@@ -223,26 +225,48 @@ class MenuScene: SKScene {
         }
     }
     
+    func startGame() {
+        // Мерцает
+        gameScene.scaleMode = SKSceneScaleMode.aspectFill
+        if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {//["inputCenter":CIVector(x: -500, y: 900)]) {
+            let transition = SKTransition(ciFilter: filter, duration: 0.5)
+            //
+    //        let transition = SKTransition.crossFade(withDuration: 0.8)
+            self.view?.presentScene(gameScene, transition: transition)
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // При нажатии на 'настройки' временно увеличиваем ей zPosition, вращаем, затемняем весь экран и выводим элементы настроек (spring со scale)
-        if let backgroundNode = self.childNode(withName: "settingsBackground") as? SKSpriteNode {
-            let fadeAnimation = SKAction.fadeAlpha(to: 0, duration: 0.75)
-            backgroundNode.run(fadeAnimation) {
-                backgroundNode.removeFromParent()
-            }
-        } else  {
-            let shapeBackgroundNode = SKSpriteNode.init(color: .black, size: self.size)
-            shapeBackgroundNode.alpha = 0.0
-            shapeBackgroundNode.zPosition = 50
-            shapeBackgroundNode.name = "settingsBackground"
-            settingsButton.zPosition = 51
-            self.addChild(shapeBackgroundNode)
-            
-            let fadeAnimation = SKAction.fadeAlpha(to: 0.95, duration: 0.75)
-            shapeBackgroundNode.run(fadeAnimation)
-        }
+        
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = self.nodes(at: location)
+            for node in touchedNode {
+                if node.name == "StartGame" {
+                    startGame()
+                }  else {
+                    if let backgroundNode = self.childNode(withName: "settingsBackground") as? SKSpriteNode {
+                        let fadeAnimation = SKAction.fadeAlpha(to: 0, duration: 0.75)
+                        backgroundNode.run(fadeAnimation) {
+                            backgroundNode.removeFromParent()
+                        }
+                    } else  {
+                        let shapeBackgroundNode = SKSpriteNode.init(color: .black, size: self.size)
+                        shapeBackgroundNode.alpha = 0.0
+                        shapeBackgroundNode.zPosition = 50
+                        shapeBackgroundNode.name = "settingsBackground"
+                        settingsButton.zPosition = 51
+                        self.addChild(shapeBackgroundNode)
+                        
+                        let fadeAnimation = SKAction.fadeAlpha(to: 0.95, duration: 0.75)
+                        shapeBackgroundNode.run(fadeAnimation)
+                    }
 
-        let rotateAction = SKAction.rotate(byAngle: MatchNode().floatAngleFromString(stringAngle: ".pi"), duration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
-        settingsButton.run(rotateAction)
+                    let rotateAction = SKAction.rotate(byAngle: MatchNode().floatAngleFromString(stringAngle: ".pi"), duration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
+                    settingsButton.run(rotateAction)
+                }
+            }
+        }
     }
 }

@@ -14,12 +14,13 @@ class GameService {
     var extraNodesRemain: Int = 0 // Сколько осталось спичек для переноса
     var numberOfSucceedLevelsAtTheSameTime: Int = 0 // Сколько уровней подряд успешно прошли
     let numberOfLevelsToShowAds: Int = 4 // Сколько надо пройти, чтобы смотреть рекламу
-//    var userData: UserGameData?
+    var userData: UserGameData?
     var inAppPurchaseProduct: SKProduct?
     var isGameFinishedWithSuccess: Bool = false
+    var currentLevelSteps: Int = 0 // Сколько шагов сделал пользователь за уровень
     
     init() {
-//        loadCurrentGameStatus()
+        loadCurrentGameStatus()
 //        checkInAppPurchase()
     }
     
@@ -37,42 +38,42 @@ class GameService {
         return true
     }
     
-//    func getUserMaxLevelNumber() -> Int {
-//        return userData?.maxReachedLevel ?? 0
-//    }
-//
-//    func getUserLevelNumber() -> Int {
-//        return userData?.currentLevel ?? 0
-//    }
-//
-//    func getUserLevel()->String {
-//        return "level_" + String(userData?.currentLevel ?? 0)
-//    }
-//
-//    func setUserLevel(level: Int) {
-//        currentLevelSteps = 0
-//        userData?.currentLevel = level
-//        saveCurrentGameStatus()
-//    }
-//
-//    func incrementUserLevel() {
-//        currentLevelSteps = 0
-//        numberOfSucceedLevelsAtTheSameTime = numberOfSucceedLevelsAtTheSameTime + 1
-//        if let currentLevel = userData?.currentLevel {
-//            userData?.currentLevel = currentLevel + 1
-//            if let userData = userData {
-//                if userData.currentLevel > userData.maxReachedLevel {
-//                    userData.maxReachedLevel = userData.currentLevel
-//                }
-//            }
-//            saveCurrentGameStatus()
-//        }
-//    }
-//
-//    func reloadLevel() {
-//        currentLevelSteps = 0
-//        numberOfSucceedLevelsAtTheSameTime = 0
-//    }
+    func getUserMaxLevelNumber() -> Int {
+        return userData?.maxReachedLevel ?? 0
+    }
+
+    func getUserLevelNumber() -> Int {
+        return userData?.currentLevel ?? 0
+    }
+
+    func getUserLevel()->String {
+        return "level_" + String(userData?.currentLevel ?? 1)
+    }
+
+    func setUserLevel(level: Int) {
+        currentLevelSteps = 0
+        userData?.currentLevel = level
+        saveCurrentGameStatus()
+    }
+
+    func incrementUserLevel() {
+        currentLevelSteps = 0
+        numberOfSucceedLevelsAtTheSameTime = numberOfSucceedLevelsAtTheSameTime + 1
+        if let currentLevel = userData?.currentLevel {
+            userData?.currentLevel = currentLevel + 1
+            if let userData = userData {
+                if userData.currentLevel > userData.maxReachedLevel {
+                    userData.maxReachedLevel = userData.currentLevel
+                }
+            }
+            saveCurrentGameStatus()
+        }
+    }
+
+    func reloadLevel() {
+        currentLevelSteps = 0
+        numberOfSucceedLevelsAtTheSameTime = 0
+    }
 //
 //    func getResultForLevel(levelModel: LevelModel)->ResultType {
 //        // считаем количество шагов и делим на оптимальное количество шагов по уровню
@@ -139,27 +140,27 @@ class GameService {
 //        return true
 //    }
 //
-//    // Сохранить текущий прогресс
-//    func saveCurrentGameStatus() {
-//        do {
-//            try UserDefaults.standard.setObject(userData, forKey: "UserData")
-//            UserDefaults.standard.synchronize()
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    // Сохранить текущий прогресс
+    func saveCurrentGameStatus() {
+        do {
+            try UserDefaults.standard.setObject(userData, forKey: "UserData")
+            UserDefaults.standard.synchronize()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 //
 //    // Загрузить текущий прогресс по игре при старте и вернуть модель данных
-//    func loadCurrentGameStatus() {
-//        do {
-//            userData = try UserDefaults.standard.getObject(forKey: "UserData", castTo: UserGameData.self)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//        if userData == nil {
-//            userData = UserGameData()
-//        }
-//    }
+    func loadCurrentGameStatus() {
+        do {
+            userData = try UserDefaults.standard.getObject(forKey: "UserData", castTo: UserGameData.self)
+        } catch {
+            print(error.localizedDescription)
+        }
+        if userData == nil {
+            userData = UserGameData()
+        }
+    }
 //
 //    func shouldShowAdsDependOnProgress()->Bool {
 //        if numberOfSucceedLevelsAtTheSameTime >= numberOfLevelsToShowAds {
