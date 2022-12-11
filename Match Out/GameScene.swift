@@ -14,9 +14,12 @@ class GameScene: SKScene {
     var descriptionLabel: SKLabelNode = SKLabelNode()
     var bulbButtonNode: SKSpriteNode = SKSpriteNode()
     var menuButtonNode: SKSpriteNode = SKSpriteNode()
+    var bulbBadgeButton = BadgeButton()
+    var gameMenuButton = UIButton()
     var levelModel: LevelModel?
     var gameService: GameService?
     var isLevelFinished: Bool = false
+    var canPressNextButton: Bool = false
     
     override func didMove(to view: SKView) {
         // TODO проверяем текущий уровень
@@ -55,22 +58,18 @@ class GameScene: SKScene {
             descriptionLabel.numberOfLines = 3
             descriptionLabel.horizontalAlignmentMode = .center
             self.addChild(descriptionLabel)
+            
+            descriptionLabel.run(SKAction.wait(forDuration: 0.2)) {
+                self.updateUIButtons()
+            }
             // Устанавливаем кнопки
-            bulbButtonNode = SKSpriteNode.init(imageNamed: ThemeService.bulbImageName(levelType: self.levelModel?.levelType ?? .green))
-            bulbButtonNode.position = CGPoint.init(x: -250, y: 560)
-            bulbButtonNode.size = CGSize.init(width: 90, height: 90)
-            bulbButtonNode.color = themeLevel.buttonsTintColor
-            bulbButtonNode.colorBlendFactor = 1
-            bulbButtonNode.zPosition = 3
-            self.addChild(bulbButtonNode)
-            menuButtonNode = SKSpriteNode.init(imageNamed: ThemeService.menuImageName(levelType: self.levelModel?.levelType ?? .green))
-            menuButtonNode.position = CGPoint.init(x: 227, y: 560)
-            menuButtonNode.size = CGSize.init(width: 80, height: 80)
-            menuButtonNode.color = themeLevel.buttonsTintColor
-            menuButtonNode.colorBlendFactor = 1
-            menuButtonNode.zPosition = 3
-            menuButtonNode.name = "menuButton"
-            self.addChild(menuButtonNode)
+//            bulbButtonNode = SKSpriteNode.init(imageNamed: ThemeService.bulbImageName(levelType: self.levelModel?.levelType ?? .green))
+//            bulbButtonNode.position = CGPoint.init(x: -250, y: 560)
+//            bulbButtonNode.size = CGSize.init(width: 90, height: 90)
+//            bulbButtonNode.color = themeLevel.buttonsTintColor
+//            bulbButtonNode.colorBlendFactor = 1
+//            bulbButtonNode.name = "getNextBestAction"
+//            bulbButtonNode.zPosition = 3
             // Запускаем анимацию заднего фона
             startEndlessAnimation()
             // Устанавливаем спички
@@ -114,6 +113,29 @@ class GameScene: SKScene {
         }
     }
     
+    func updateUIButtons() {
+        let bulbImage = UIImage(named: ThemeService.bulbImageName(levelType: self.levelModel?.levelType ?? .green))
+        bulbBadgeButton = BadgeButton.init(icon: bulbImage!, shouldLimitValueTo9: true)
+        bulbBadgeButton.center = self.view!.center
+        bulbBadgeButton.tintColor = globalBlueColor
+        let bulbPosition = CGPoint.init(x: 25, y: 35)
+        bulbBadgeButton.frame = CGRect.init(x: bulbPosition.x, y: bulbPosition.y, width: 60, height: 60)
+        bulbBadgeButton.addTarget(self, action: #selector(getNextBestAction), for: .touchDown)
+        // TODO сделать реальным изменение
+        bulbBadgeButton.setBadgeValue(3)
+        self.view?.addSubview(bulbBadgeButton)
+
+        let menuImage = UIImage(named: ThemeService.menuImageName(levelType: self.levelModel?.levelType ?? .green))
+        gameMenuButton = UIButton.init(type: .custom)
+        gameMenuButton.setImage(menuImage, for: .normal)
+        gameMenuButton.center = self.view!.center
+        gameMenuButton.tintColor = globalBlueColor
+        let gameMenuButtonPosition = CGPoint.init(x: (self.view?.frame.width)! - 50 - 25, y: 40)
+        gameMenuButton.frame = CGRect.init(x: gameMenuButtonPosition.x, y: gameMenuButtonPosition.y, width: 50, height: 50)
+        gameMenuButton.addTarget(self, action: #selector(goToMenu), for: .touchDown)
+        self.view?.addSubview(gameMenuButton)
+    }
+    
     func startEndlessAnimation() {
         let moveLeft = SKAction.moveBy(x: 800, y: 0, duration: 23)
         let moveReset = SKAction.moveBy(x: -800, y: 0, duration: 23)
@@ -132,71 +154,74 @@ class GameScene: SKScene {
                 if targetNode.name == "menuButton" {
                     self.goToMenu()
                 }
+                else if targetNode.name == "getNextBestAction" {
+                    self.getNextBestAction()
+                }
             }
         }
         // Проверяем, можно ли добавить или убрать спичку
         // Если можно убирать и спичка настоящая - убираем, иначе ничего не делаем
         // Если можно добавлять, есть спички и нажатая сейчас с спичка - плейсхолджер - переносим. Иначе ничего не делаем
         if let selectedMatchNode = getSelectedMatchFor(touches: touches) {
-            switch levelModel?.gameplayType {
-                case .add:
-                    if selectedMatchNode.potentailMatch == true {
-                        if let childNode = getExtraNodeForIndex(index: self.gameService?.extraNodesRemain ?? 0) {
-                            childNode.zRotation = selectedMatchNode.zRotation
-                            childNode.position = selectedMatchNode.position
-                            childNode.canBecomeExtraMatch = true
-                            self.gameService?.extraNodesRemain -= 1
-                            impactOccured(intense: .light)
-                        }
-                    } else {
-                        if selectedMatchNode.canBecomeExtraMatch {
-                            moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode)
-                            impactOccured(intense: .light)
-                        }
-                }
-                case .remove,
-                    .move:
-                    if selectedMatchNode.potentailMatch == false && selectedMatchNode.name != "extraMatch" {
-                        //  Очень странная, но рабочая логика :)
-                        if abs(gameService?.extraNodesRemain ?? 0) - abs(self.levelModel?.extraMatches ?? 0) < abs(self.levelModel?.extraMatches ?? 0)  {
-                            moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode, shouldIncrement: false)
-                            impactOccured(intense: .light)
-                        }
-                    } else if selectedMatchNode.potentailMatch == true {
-                        // Вынести в общий блог с параметром shouldIncrement
-                        if let childNode = getExtraNodeForIndex(index: abs(self.gameService?.extraNodesRemain ?? 0)) {
-                            childNode.zRotation = selectedMatchNode.zRotation
-                            childNode.position = selectedMatchNode.position
-                            childNode.canBecomeExtraMatch = true
-                            childNode.name = ""
-                            self.gameService?.extraNodesRemain += 1
-                            impactOccured(intense: .light)
-                        }
+            self.executeActionWithSelectedNode(selectedMatchNode: selectedMatchNode)
+        }
+    }
+    
+    
+    func executeActionWithSelectedNode(selectedMatchNode: MatchNode) {
+        switch levelModel?.gameplayType {
+            case .add:
+                if selectedMatchNode.potentailMatch == true {
+                    if let childNode = getExtraNodeForIndex(index: self.gameService?.extraNodesRemain ?? 0) {
+                        childNode.zRotation = selectedMatchNode.zRotation
+                        childNode.position = selectedMatchNode.position
+                        childNode.canBecomeExtraMatch = true
+                        self.gameService?.extraNodesRemain -= 1
+                        impactOccured(intense: .light)
                     }
-                case .none:
-                    break
+                } else {
+                    if selectedMatchNode.canBecomeExtraMatch {
+                        moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode)
+                        impactOccured(intense: .light)
+                    }
             }
+            case .remove,
+                .move:
+                if selectedMatchNode.potentailMatch == false && selectedMatchNode.name != "extraMatch" {
+                    //  Очень странная, но рабочая логика :)
+                    if abs(gameService?.extraNodesRemain ?? 0) - abs(self.levelModel?.extraMatches ?? 0) < abs(self.levelModel?.extraMatches ?? 0)  {
+                        moveNodeToExtraNodePlace(selectedMatchNode: selectedMatchNode, shouldIncrement: false)
+                        impactOccured(intense: .light)
+                    }
+                } else if selectedMatchNode.potentailMatch == true {
+                    // Вынести в общий блог с параметром shouldIncrement
+                    if let childNode = getExtraNodeForIndex(index: abs(self.gameService?.extraNodesRemain ?? 0)) {
+                        childNode.zRotation = selectedMatchNode.zRotation
+                        childNode.position = selectedMatchNode.position
+                        childNode.canBecomeExtraMatch = true
+                        childNode.name = ""
+                        self.gameService?.extraNodesRemain += 1
+                        impactOccured(intense: .light)
+                    }
+                }
+            case .none:
+                break
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // TODO проверяем сходимость игры
-        var isSuccess: Bool = false
-        if let solvesArray = self.levelModel?.resolves {
-            for solve in solvesArray {
-                if isSucceedGameFinished(solve: solve) {
-                    isSuccess = true
-                }
-            }
-            if !isSuccess {
-                return
-            }
+        if checkIfGameFinished() == false {
+            return
         }
         // Вот тут мы понимаем, что игра сошлась - надо бы еще пообрабатывать нажатия
         if !self.isLevelFinished {
             self.isLevelFinished = true
             showConfetti()
         } else  {
+            if !canPressNextButton {
+                return
+            }
             let touch = touches.first as UITouch?
             if let touchLocation = touch?.location(in: self) {
                 if let targetNode = atPoint(touchLocation) as? SKSpriteNode {
@@ -206,16 +231,38 @@ class GameScene: SKScene {
                         self.isLevelFinished = false
                         self.gameService?.incrementUserLevel()
                         self.removeMenuButtons()
+                        self.canPressNextButton = false
                     }
                     else if targetNode.name == "reload" {
                         self.isLevelFinished = false
                         self.reloadLevel()
+                        self.canPressNextButton = false
                     } else if targetNode.name == "menu" {
                         self.goToMenu()
+                        self.canPressNextButton = false
                     }
                 }
             }
         }
+    }
+    
+    func checkIfGameFinished()->Bool {
+        var isSuccess: Bool = false
+        if let solvesArray = self.levelModel?.resolves {
+            for solve in solvesArray {
+                if isSucceedGameFinished(solve: solve) {
+                    isSuccess = true
+                }
+            }
+            if !isSuccess {
+                return false
+            }
+        }
+        if !self.isLevelFinished {
+            self.isLevelFinished = true
+            showConfetti()
+        }
+        return true
     }
     
     func reloadLevel() {
@@ -247,9 +294,12 @@ class GameScene: SKScene {
         }
     }
     
-    func goToMenu() {
+   @objc func goToMenu() {
         let menuScene = MenuScene(fileNamed: "MenuScene")!
         menuScene.scaleMode = SKSceneScaleMode.aspectFill
+       for view in self.view!.subviews {
+           view.removeFromSuperview()
+       }
         if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {
             let transition = SKTransition(ciFilter: filter, duration: 0.5)
             self.view?.presentScene(menuScene, transition: transition)
@@ -298,6 +348,25 @@ class GameScene: SKScene {
         return false
     }
     
+    func getMatchNodeFromBoardWithNode(matchToFind: matchModel, shouldRemove: Bool)->MatchNode? {
+        for child in self.children {
+            if let child = child as? MatchNode {
+                var nodeStatus = child.potentailMatch
+                if shouldRemove {
+                    nodeStatus = !nodeStatus
+                }
+                let isXTrue = abs(child.position.x - CGFloat(matchToFind.x)) < 0.1
+                let isYTrue = abs(child.position.y - CGFloat(matchToFind.y)) < 0.1
+                let isNodeStatusTrue = nodeStatus == Bool(truncating: matchToFind.matchType as NSNumber)
+                let isAngleTrue = abs(abs(child.floatAngleFromString(stringAngle: matchToFind.matchAngle)) - abs(child.zRotation)) < 0.1
+                if isXTrue && isYTrue && isNodeStatusTrue && isAngleTrue {
+                    return child
+                }
+            }
+        }
+        return nil
+    }
+    
     func checkIfMatchNotExistsOnBoard(matchToFind: matchModel)->Bool {
         for child in self.children {
             if let child = child as? MatchNode {
@@ -328,7 +397,7 @@ class GameScene: SKScene {
     func getExtraNodeForIndex(index: Int) -> MatchNode? {
         for child in self.children {
             if child.name == "extraMatch" {
-                if abs(child.position.x - CGFloat(-280 + (index-1)*40)) <= 0.5 {
+                if abs(abs(child.position.x) - abs(CGFloat(-280 + (index-1)*40))) <= 0.5 {
                     return child as? MatchNode
                 }
             }
@@ -356,6 +425,70 @@ class GameScene: SKScene {
         return nil
     }
     
+    // Подсказка
+    @objc func getNextBestAction() {
+        bulbBadgeButton.setBadgeValue(bulbBadgeButton.currentBadgeCount - 1)
+        if let solvesArray = self.levelModel?.resolves {
+            if let solve = solvesArray.first {
+                // C MOVE Надо переделать
+                if self.levelModel?.gameplayType == .move {
+                    if let matchArrayReduces = solve.matchArrayReduced {
+                        for removedModel in matchArrayReduces {
+                            if checkIfMatchExistsOnBoard(matchToFind: removedModel) == false {
+                               // TODO убираем отсюда в запас
+                                if let mactchNode = getMatchNodeFromBoardWithNode(matchToFind: removedModel, shouldRemove: true) {
+                                    moveNodeToExtraNodePlace(selectedMatchNode: mactchNode, shouldIncrement: false)
+                                    checkIfGameFinished()
+                                    return
+                                }
+                            }
+                        }
+                    }
+                    for addModel in solve.matchArray {
+                        if checkIfMatchExistsOnBoard(matchToFind: addModel) == false {
+                            // TODO кладем сюда из запаса
+                            if let mactchNode = getMatchNodeFromBoardWithNode(matchToFind: addModel, shouldRemove: false) {
+                                executeActionWithSelectedNode(selectedMatchNode: mactchNode)
+                                checkIfGameFinished()
+                                return
+                            }
+                        }
+                    }
+                } else {
+                    for matchModel in solve.matchArray {
+                        if self.levelModel?.gameplayType == .remove {
+                            if checkIfMatchNotExistsOnBoard(matchToFind: matchModel) == false {
+                                // TODO убираем отсюда в запас
+                                if let mactchNode = getMatchNodeFromBoardWithNode(matchToFind: matchModel, shouldRemove: true) {
+                                    moveNodeToExtraNodePlace(selectedMatchNode: mactchNode, shouldIncrement: true)
+                                    checkIfGameFinished()
+                                    return
+                                }
+                            }
+                        // с Add работает
+                        } else if self.levelModel?.gameplayType == .add {
+                        // Если не проходит проверка хоть раз - break цикла делаем
+                            if checkIfMatchExistsOnBoard(matchToFind: matchModel) == false {
+                                // TODO сюда кладем из запаса
+                                if let mactchNode = getMatchNodeFromBoardWithNode(matchToFind: matchModel, shouldRemove: false) {
+                                    executeActionWithSelectedNode(selectedMatchNode: mactchNode)
+                                    checkIfGameFinished()
+                                    return
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Смотрим можем ли перенести спичку в описанное место
+        // если да - переносим
+        //________
+        // Получаем массив положительных ходов
+        // Ищем тот, которого еще нет
+        // Совершаем ход
+    }
+    
     func parentNodeOf(node: SKNode) -> SKNode?
     {
         if let parentNode = node.parent
@@ -376,7 +509,9 @@ class GameScene: SKScene {
     }
     
     func showConfetti() {
-        // TEST!!
+        for view in self.view!.subviews {
+            view.removeFromSuperview()
+        }
         // Сделать это через SpriteNode
         let lightBackgroundNode = SKSpriteNode.init(color: UIColor.black, size: self.size)
 //        lightBackgroundNode.position = (self.view?.center)!
@@ -414,6 +549,7 @@ class GameScene: SKScene {
 //                reloadLabel.zPosition = 20
 //                reloadLabel.position = CGPoint.init(x: reloadButton.position.x, y: reloadButton.frame.minY - 20)
 //                self.addChild(reloadLabel)
+            self.canPressNextButton = true
         }
         
         let menuButton = SKSpriteNode.init(imageNamed: "menu")
@@ -433,6 +569,7 @@ class GameScene: SKScene {
 //                menuLabel.zPosition = 20
 //                menuLabel.position = CGPoint.init(x: menuButton.position.x, y: menuButton.frame.minY - 20)
 //                self.addChild(menuLabel)
+            self.canPressNextButton = true
         }
         
         nextButton.run(moveAction) {

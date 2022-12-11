@@ -10,6 +10,9 @@
 		56013EEF28CCFE9B00BCABC3 /* level_9.json in Resources */ = {isa = PBXBuildFile; fileRef = 56013EEE28CCFE9B00BCABC3 /* level_9.json */; };
 		56013EF328CD0B5500BCABC3 /* level_10.json in Resources */ = {isa = PBXBuildFile; fileRef = 56013EF228CD0B5500BCABC3 /* level_10.json */; };
 		56013EF528CE30F600BCABC3 /* OneMoreTestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56013EF428CE30F600BCABC3 /* OneMoreTestScene.sks */; };
+		5672F224293961E1009EE096 /* level_11.json in Resources */ = {isa = PBXBuildFile; fileRef = 5672F223293961E0009EE096 /* level_11.json */; };
+		568F9FB9294632E400E8B80C /* level_12.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FB8294632E400E8B80C /* level_12.json */; };
+		568F9FBB2946377A00E8B80C /* level_13.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FBA2946377A00E8B80C /* level_13.json */; };
 		56919EED28C8F40D00F3B354 /* level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EEC28C8F40D00F3B354 /* level_5.json */; };
 		56919EEF28C8FD3500F3B354 /* level_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EEE28C8FD3400F3B354 /* level_8.json */; };
 		56919EF128CA064700F3B354 /* level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 56919EF028CA064700F3B354 /* level_2.json */; };
@@ -23,6 +26,7 @@
 		569E8ADC28AEA4320005D7FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 569E8ADA28AEA4320005D7FA /* Main.storyboard */; };
 		569E8ADE28AEA4350005D7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569E8ADD28AEA4350005D7FA /* Assets.xcassets */; };
 		569E8AE128AEA4350005D7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 569E8ADF28AEA4350005D7FA /* LaunchScreen.storyboard */; };
+		56A4CB0B293BD5A40050CDBF /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A4CB0A293BD5A40050CDBF /* BadgeButton.swift */; };
 		56A7CD0228B694D800802543 /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7CD0128B694D800802543 /* ThemeService.swift */; };
 		56A7CD0528B6951800802543 /* LevelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A7CD0428B6951800802543 /* LevelModel.swift */; };
 		56A7CD0828B7992800802543 /* testLevel.json in Resources */ = {isa = PBXBuildFile; fileRef = 56A7CD0728B7992800802543 /* testLevel.json */; };
@@ -48,6 +52,9 @@
 		56013EEE28CCFE9B00BCABC3 /* level_9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_9.json; sourceTree = "<group>"; };
 		56013EF228CD0B5500BCABC3 /* level_10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_10.json; sourceTree = "<group>"; };
 		56013EF428CE30F600BCABC3 /* OneMoreTestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OneMoreTestScene.sks; sourceTree = "<group>"; };
+		5672F223293961E0009EE096 /* level_11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_11.json; sourceTree = "<group>"; };
+		568F9FB8294632E400E8B80C /* level_12.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_12.json; sourceTree = "<group>"; };
+		568F9FBA2946377A00E8B80C /* level_13.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_13.json; sourceTree = "<group>"; };
 		56919EEC28C8F40D00F3B354 /* level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_5.json; sourceTree = "<group>"; };
 		56919EEE28C8FD3400F3B354 /* level_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_8.json; sourceTree = "<group>"; };
 		56919EF028CA064700F3B354 /* level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_2.json; sourceTree = "<group>"; };
@@ -62,6 +69,7 @@
 		569E8ADB28AEA4320005D7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		569E8ADD28AEA4350005D7FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		569E8AE028AEA4350005D7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		56A4CB0A293BD5A40050CDBF /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		56A7CD0128B694D800802543 /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		56A7CD0428B6951800802543 /* LevelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelModel.swift; sourceTree = "<group>"; };
 		56A7CD0728B7992800802543 /* testLevel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testLevel.json; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 		569E8ACF28AEA4320005D7FA /* Match Out */ = {
 			isa = PBXGroup;
 			children = (
+				56A4CB07293BD3D60050CDBF /* Badge */,
 				56D1E8DD28D0D31A003E3594 /* MenuButton */,
 				56D1E8D828D0C875003E3594 /* FormGenerator */,
 				56CA5EC928C888C100EEB5BA /* SpringAnimation */,
@@ -145,6 +154,14 @@
 				569E8ADF28AEA4350005D7FA /* LaunchScreen.storyboard */,
 			);
 			path = "Match Out";
+			sourceTree = "<group>";
+		};
+		56A4CB07293BD3D60050CDBF /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				56A4CB0A293BD5A40050CDBF /* BadgeButton.swift */,
+			);
+			name = Badge;
 			sourceTree = "<group>";
 		};
 		56A7CD0028B6949300802543 /* ThemeService */ = {
@@ -178,6 +195,9 @@
 				56919EEE28C8FD3400F3B354 /* level_8.json */,
 				56013EEE28CCFE9B00BCABC3 /* level_9.json */,
 				56013EF228CD0B5500BCABC3 /* level_10.json */,
+				5672F223293961E0009EE096 /* level_11.json */,
+				568F9FB8294632E400E8B80C /* level_12.json */,
+				568F9FBA2946377A00E8B80C /* level_13.json */,
 			);
 			name = LevelsJSON;
 			sourceTree = "<group>";
@@ -294,12 +314,15 @@
 				56013EF328CD0B5500BCABC3 /* level_10.json in Resources */,
 				56013EF528CE30F600BCABC3 /* OneMoreTestScene.sks in Resources */,
 				56A7CD0828B7992800802543 /* testLevel.json in Resources */,
+				568F9FB9294632E400E8B80C /* level_12.json in Resources */,
 				56C47CFB28BFA69300B9980B /* level_1.json in Resources */,
 				56013EEF28CCFE9B00BCABC3 /* level_9.json in Resources */,
 				56FCE26228B0F95700307714 /* TestLevelScene.sks in Resources */,
 				56C47CFD28C001F200B9980B /* level_6.json in Resources */,
 				569E8AE128AEA4350005D7FA /* LaunchScreen.storyboard in Resources */,
 				569E8AD528AEA4320005D7FA /* Actions.sks in Resources */,
+				5672F224293961E1009EE096 /* level_11.json in Resources */,
+				568F9FBB2946377A00E8B80C /* level_13.json in Resources */,
 				56CA5EC528C64F7900EEB5BA /* level_4.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +341,7 @@
 				56D1E8E128D39BBE003E3594 /* MenuScene.swift in Sources */,
 				56D1E8E328D5BF4C003E3594 /* SKAdvancedLabelNode.swift in Sources */,
 				56A7CD0F28BE954B00802543 /* LevelParser.swift in Sources */,
+				56A4CB0B293BD5A40050CDBF /* BadgeButton.swift in Sources */,
 				56CA5ECB28C888D200EEB5BA /* SpriteKit-Spring.swift in Sources */,
 				56A7CD0228B694D800802543 /* ThemeService.swift in Sources */,
 				569E8AD928AEA4320005D7FA /* GameViewController.swift in Sources */,

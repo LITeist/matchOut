@@ -74,6 +74,7 @@ class GameService {
         currentLevelSteps = 0
         numberOfSucceedLevelsAtTheSameTime = 0
     }
+    
 //
 //    func getResultForLevel(levelModel: LevelModel)->ResultType {
 //        // считаем количество шагов и делим на оптимальное количество шагов по уровню

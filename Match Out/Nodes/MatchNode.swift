@@ -76,6 +76,9 @@ class MatchNode: SKSpriteNode {
         } 
         else if stringAngle == ".pi" {
             return .pi
+        }
+        else if stringAngle == "-.pi" {
+            return -.pi
         } else if stringAngle == "-.pi/2" {
             return -.pi/2
         } else if stringAngle == ".pi/3" {

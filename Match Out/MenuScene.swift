@@ -236,7 +236,7 @@ class MenuScene: SKScene {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // При нажатии на 'настройки' временно увеличиваем ей zPosition, вращаем, затемняем весь экран и выводим элементы настроек (spring со scale)
         
         for touch in touches {
@@ -245,7 +245,7 @@ class MenuScene: SKScene {
             for node in touchedNode {
                 if node.name == "StartGame" {
                     startGame()
-                }  else {
+                }  else if node.name == "settings" {
                     if let backgroundNode = self.childNode(withName: "settingsBackground") as? SKSpriteNode {
                         let fadeAnimation = SKAction.fadeAlpha(to: 0, duration: 0.75)
                         backgroundNode.run(fadeAnimation) {
@@ -265,8 +265,13 @@ class MenuScene: SKScene {
 
                     let rotateAction = SKAction.rotate(byAngle: MatchNode().floatAngleFromString(stringAngle: ".pi"), duration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
                     settingsButton.run(rotateAction)
+                    return()
                 }
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+   
     }
 }
