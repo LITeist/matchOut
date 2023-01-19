@@ -37,7 +37,7 @@ class MenuScene: SKScene {
             startMatchAnimation()
             // Вот тут расставляем элементы управления. В нашем кейсе - запускаем спички
             // TODO проверяем вращение для кнопки 'Настройки'
-            settingsButton = SKSpriteNode.init(imageNamed: "settingsBlue")
+            settingsButton = SKSpriteNode.init(imageNamed: ThemeService.settingsImageName(levelType: self.levelModel?.levelType))
             settingsButton.size = CGSize.init(width: 100, height: 100)
             settingsButton.position = CGPoint.init(x: -190, y: -562)
             settingsButton.colorBlendFactor = 0.4
@@ -46,7 +46,7 @@ class MenuScene: SKScene {
             self.addChild(settingsButton)
             
             // Кнопка выбора уровней
-            let levelSelectButton = SKSpriteNode.init(imageNamed: "menuBlue")
+            let levelSelectButton = SKSpriteNode.init(imageNamed: ThemeService.mainMenuMenuImageName(levelType: self.levelModel?.levelType))
             levelSelectButton.size = CGSize.init(width: 100, height: 100)
             levelSelectButton.position = CGPoint.init(x: 190, y: -562)
             levelSelectButton.colorBlendFactor = 0.4
@@ -67,19 +67,19 @@ class MenuScene: SKScene {
             self.animateMoneySprite(moneySprite: currentMoney)
             
             // Размещаем главные кнопки
-            let menuButton = MenuButton.init(size: .medium, title: "Start  Game", type: themeLevel.matchType)
+            let menuButton = MenuButton.init(size: .medium, title: "Start  Game", type: themeLevel)
             menuButton.zPosition = 1
             menuButton.position = CGPoint.init(x: 0, y: 1200)
             menuButton.name = "StartGame"
             self.addChild(menuButton)
             
-            let adsButton = MenuButton.init(size: .small, title: "", type: themeLevel.matchType)
+            let adsButton = MenuButton.init(size: .small, title: "", type: themeLevel)
             adsButton.zPosition = 1
             adsButton.position =  CGPoint.init(x: 0, y: 1100)
             self.addChild(adsButton)
             
             // TODO тут выбирать иконку другую
-            let presentIcon = SKSpriteNode.init(imageNamed: "presentBlue")
+            let presentIcon = SKSpriteNode.init(imageNamed: ThemeService.presentImageName(levelType: self.levelModel?.levelType))
             presentIcon.zPosition = 2
             presentIcon.size = CGSize.init(width: 90, height: 90)
             adsButton.addChild(presentIcon)

@@ -22,16 +22,16 @@ class MenuButton: SKNode {
         super.init(coder: aDecoder)
     }
     
-    init(size: MenuButtonSize, title: String?, type: MatchType) {
+    init(size: MenuButtonSize, title: String?, type: ThemeModel) {
         super.init()
         
         switch size {
         case .small:
-            smallButtonInit(type: type)
+            smallButtonInit(type: type.matchType)
         case .medium:
-            mediumButtomInit(type: type)
+            mediumButtomInit(type: type.matchType)
         case .big:
-            bigButtonInit(type: type)
+            bigButtonInit(type: type.matchType)
         }
         
         if let titleString = title {
@@ -40,7 +40,7 @@ class MenuButton: SKNode {
             animatedLabel.fontName = "HelveticaNeue-Medium"
             animatedLabel.fontSize = 70.0
             animatedLabel.position = CGPoint.init(x: self.position.x, y: self.position.y - 20)
-            animatedLabel.fontColor = globalBlueColor
+            animatedLabel.fontColor = type.textColor
             self.addChild(animatedLabel)
             
         }

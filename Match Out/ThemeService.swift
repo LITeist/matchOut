@@ -14,7 +14,7 @@ let globalGreenColor: UIColor = UIColor.init(red: 116/255.0, green: 178/255.0, b
 let globalBlackColor: UIColor = UIColor.init(red: 63/255.0, green: 63/255.0, blue: 63/255.0, alpha: 1)
 let globalBrownColor: UIColor = UIColor.init(red: 96/255.0, green: 79/255.0, blue: 55/255.0, alpha: 1)
 let globalPurpleColor: UIColor = UIColor.init(red: 96/255.0, green: 64/255.0, blue: 176/255.0, alpha: 1)
-let globalYellowColor: UIColor = UIColor.init(red: 255/255.0, green: 255/255.0, blue: 0, alpha: 1)
+let globalYellowColor: UIColor = UIColor.init(red: 243/255.0, green: 216/255.0, blue: 130/255.0, alpha: 1)
 
 
 /// Модель темы для уровня, содержит цвет фона, цвет спичек, цвет текста задания
@@ -51,12 +51,71 @@ class ThemeService {
         }
         return "bulb"
     }
+        
+    static func reloadImageName(levelType: LevelColorType?)->String {
+        switch levelType {
+        case .green:
+            return "reloadBlue"
+        case .gray:
+            return "reloadBlack"
+        case .pink:
+            return "reloadBrown"
+        case .purple:
+            return "reloadYellow"
+        default:
+            return "reloadBlue"
+        }
+    }
+    
+    static func presentImageName(levelType: LevelColorType?)->String {
+        switch levelType {
+        case .purple:
+            return "presentYellow"
+        case .gray:
+            return "presentBlack"
+        case .pink:
+            return "presentBrown"
+        default:
+            return "presentBlue"
+        }
+    }
+    
+    static func settingsImageName(levelType: LevelColorType?)->String {
+        switch levelType {
+        case .purple:
+            return "settingsYellow"
+        case .gray:
+            return "settingsBlack"
+        case .pink:
+            return "settingsBrown"
+        default:
+            return "settingsBlue"
+        }
+    }
     
     static func menuImageName(levelType: LevelColorType?)->String {
-        if levelType == .purple {
-            return "yellowMenu"
+        switch levelType {
+        case .purple:
+            return "brightYellowMenu"
+        case .gray:
+            return "menuBlack"
+        case .pink:
+            return "menuBrown"
+        default:
+            return "menuBlue"
         }
-        return "menuBlue"
     }
-
+    
+    static func mainMenuMenuImageName(levelType: LevelColorType?)->String {
+        switch levelType {
+        case .purple:
+            return "menuYellow"
+        case .gray:
+            return "menuBlack"
+        case .pink:
+            return "menuBrown"
+        default:
+            return "menuBlue"
+        }
+    }
 }

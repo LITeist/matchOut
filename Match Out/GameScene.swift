@@ -114,7 +114,7 @@ class GameScene: SKScene {
     }
     
     func updateUIButtons() {
-        let bulbImage = UIImage(named: ThemeService.bulbImageName(levelType: self.levelModel?.levelType ?? .green))
+        let bulbImage = UIImage(named: ThemeService.reloadImageName(levelType: self.levelModel?.levelType ?? .green)) //bulbImageName(levelType: self.levelModel?.levelType ?? .green))
         bulbBadgeButton = BadgeButton.init(icon: bulbImage!, shouldLimitValueTo9: true)
         bulbBadgeButton.center = self.view!.center
         bulbBadgeButton.tintColor = globalBlueColor
