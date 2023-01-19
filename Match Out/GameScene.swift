@@ -34,7 +34,7 @@ class GameScene: SKScene {
         self.removeConfetti()
     }
     
-    func prepareLevel() {
+    @objc func prepareLevel() {
         self.levelModel = LevelParser().loadLevel(levelName: gameService?.getUserLevel() ?? "level_1")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             // Устанавливаем background
@@ -120,9 +120,11 @@ class GameScene: SKScene {
         bulbBadgeButton.tintColor = globalBlueColor
         let bulbPosition = CGPoint.init(x: 25, y: 35)
         bulbBadgeButton.frame = CGRect.init(x: bulbPosition.x, y: bulbPosition.y, width: 60, height: 60)
-        bulbBadgeButton.addTarget(self, action: #selector(getNextBestAction), for: .touchDown)
+        // TODO вернуть потом подсказки
+//        bulbBadgeButton.addTarget(self, action: #selector(getNextBestAction), for: .touchDown)
+        bulbBadgeButton.addTarget(self, action: #selector(reassembleLevel), for: .touchDown)
         // TODO сделать реальным изменение
-        bulbBadgeButton.setBadgeValue(3)
+//        bulbBadgeButton.setBadgeValue(3)
         self.view?.addSubview(bulbBadgeButton)
 
         let menuImage = UIImage(named: ThemeService.menuImageName(levelType: self.levelModel?.levelType ?? .green))
@@ -286,12 +288,16 @@ class GameScene: SKScene {
                     reloadButton.run(smallMovesAction)
                     nextButton.run(moveAction) {
                         self.removeConfetti()
-                        self.removeAllChildren()
-                        self.prepareLevel()
+                        self.reassembleLevel()
                     }
                 }
             }
         }
+    }
+    
+    @objc func reassembleLevel() {
+        self.removeAllChildren()
+        self.prepareLevel()
     }
     
    @objc func goToMenu() {
@@ -427,7 +433,7 @@ class GameScene: SKScene {
     
     // Подсказка
     @objc func getNextBestAction() {
-        bulbBadgeButton.setBadgeValue(bulbBadgeButton.currentBadgeCount - 1)
+//        bulbBadgeButton.setBadgeValue(bulbBadgeButton.currentBadgeCount - 1)
         if let solvesArray = self.levelModel?.resolves {
             if let solve = solvesArray.first {
                 // C MOVE Надо переделать
