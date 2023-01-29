@@ -13,6 +13,7 @@
 		564EF73B2985D19000E278EA /* level_16.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73A2985D19000E278EA /* level_16.json */; };
 		564EF73D2986B63500E278EA /* level_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73C2986B63400E278EA /* level_17.json */; };
 		564EF73F2986B94000E278EA /* level_18.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73E2986B94000E278EA /* level_18.json */; };
+		564EF7412986BE0B00E278EA /* level_19.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF7402986BE0B00E278EA /* level_19.json */; };
 		5672F224293961E1009EE096 /* level_11.json in Resources */ = {isa = PBXBuildFile; fileRef = 5672F223293961E0009EE096 /* level_11.json */; };
 		56870CF329468F0E00FA6987 /* level_15.json in Resources */ = {isa = PBXBuildFile; fileRef = 56870CF229468F0E00FA6987 /* level_15.json */; };
 		568F9FB9294632E400E8B80C /* level_12.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FB8294632E400E8B80C /* level_12.json */; };
@@ -60,6 +61,7 @@
 		564EF73A2985D19000E278EA /* level_16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_16.json; sourceTree = "<group>"; };
 		564EF73C2986B63400E278EA /* level_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_17.json; sourceTree = "<group>"; };
 		564EF73E2986B94000E278EA /* level_18.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_18.json; sourceTree = "<group>"; };
+		564EF7402986BE0B00E278EA /* level_19.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_19.json; sourceTree = "<group>"; };
 		5672F223293961E0009EE096 /* level_11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_11.json; sourceTree = "<group>"; };
 		56870CF229468F0E00FA6987 /* level_15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_15.json; sourceTree = "<group>"; };
 		568F9FB8294632E400E8B80C /* level_12.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_12.json; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				564EF73A2985D19000E278EA /* level_16.json */,
 				564EF73C2986B63400E278EA /* level_17.json */,
 				564EF73E2986B94000E278EA /* level_18.json */,
+				564EF7402986BE0B00E278EA /* level_19.json */,
 			);
 			name = LevelsJSON;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				569E8AD528AEA4320005D7FA /* Actions.sks in Resources */,
 				5672F224293961E1009EE096 /* level_11.json in Resources */,
 				568F9FBB2946377A00E8B80C /* level_13.json in Resources */,
+				564EF7412986BE0B00E278EA /* level_19.json in Resources */,
 				56CA5EC528C64F7900EEB5BA /* level_4.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
