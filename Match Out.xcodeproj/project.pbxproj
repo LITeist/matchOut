@@ -15,6 +15,8 @@
 		564EF73F2986B94000E278EA /* level_18.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73E2986B94000E278EA /* level_18.json */; };
 		564EF7412986BE0B00E278EA /* level_19.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF7402986BE0B00E278EA /* level_19.json */; };
 		5672F224293961E1009EE096 /* level_11.json in Resources */ = {isa = PBXBuildFile; fileRef = 5672F223293961E0009EE096 /* level_11.json */; };
+		567CF00229894F8E00C01980 /* level_20.json in Resources */ = {isa = PBXBuildFile; fileRef = 567CF00129894F8E00C01980 /* level_20.json */; };
+		567CF0042989518000C01980 /* level_21.json in Resources */ = {isa = PBXBuildFile; fileRef = 567CF0032989518000C01980 /* level_21.json */; };
 		56870CF329468F0E00FA6987 /* level_15.json in Resources */ = {isa = PBXBuildFile; fileRef = 56870CF229468F0E00FA6987 /* level_15.json */; };
 		568F9FB9294632E400E8B80C /* level_12.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FB8294632E400E8B80C /* level_12.json */; };
 		568F9FBB2946377A00E8B80C /* level_13.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FBA2946377A00E8B80C /* level_13.json */; };
@@ -63,6 +65,8 @@
 		564EF73E2986B94000E278EA /* level_18.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_18.json; sourceTree = "<group>"; };
 		564EF7402986BE0B00E278EA /* level_19.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_19.json; sourceTree = "<group>"; };
 		5672F223293961E0009EE096 /* level_11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_11.json; sourceTree = "<group>"; };
+		567CF00129894F8E00C01980 /* level_20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_20.json; sourceTree = "<group>"; };
+		567CF0032989518000C01980 /* level_21.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_21.json; sourceTree = "<group>"; };
 		56870CF229468F0E00FA6987 /* level_15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_15.json; sourceTree = "<group>"; };
 		568F9FB8294632E400E8B80C /* level_12.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_12.json; sourceTree = "<group>"; };
 		568F9FBA2946377A00E8B80C /* level_13.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_13.json; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				564EF73C2986B63400E278EA /* level_17.json */,
 				564EF73E2986B94000E278EA /* level_18.json */,
 				564EF7402986BE0B00E278EA /* level_19.json */,
+				567CF00129894F8E00C01980 /* level_20.json */,
+				567CF0032989518000C01980 /* level_21.json */,
 			);
 			name = LevelsJSON;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				564EF73D2986B63500E278EA /* level_17.json in Resources */,
 				56C47CFF28C1049F00B9980B /* level_3.json in Resources */,
 				56919EEF28C8FD3500F3B354 /* level_8.json in Resources */,
+				567CF0042989518000C01980 /* level_21.json in Resources */,
 				56919EF328CBCFA100F3B354 /* level_7.json in Resources */,
 				56919EF128CA064700F3B354 /* level_2.json in Resources */,
 				569E8ADC28AEA4320005D7FA /* Main.storyboard in Resources */,
@@ -337,6 +344,7 @@
 				56A7CD0828B7992800802543 /* testLevel.json in Resources */,
 				568F9FB9294632E400E8B80C /* level_12.json in Resources */,
 				56C47CFB28BFA69300B9980B /* level_1.json in Resources */,
+				567CF00229894F8E00C01980 /* level_20.json in Resources */,
 				56013EEF28CCFE9B00BCABC3 /* level_9.json in Resources */,
 				56FCE26228B0F95700307714 /* TestLevelScene.sks in Resources */,
 				56C47CFD28C001F200B9980B /* level_6.json in Resources */,
