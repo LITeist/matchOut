@@ -17,6 +17,7 @@
 		5672F224293961E1009EE096 /* level_11.json in Resources */ = {isa = PBXBuildFile; fileRef = 5672F223293961E0009EE096 /* level_11.json */; };
 		567CF00229894F8E00C01980 /* level_20.json in Resources */ = {isa = PBXBuildFile; fileRef = 567CF00129894F8E00C01980 /* level_20.json */; };
 		567CF0042989518000C01980 /* level_21.json in Resources */ = {isa = PBXBuildFile; fileRef = 567CF0032989518000C01980 /* level_21.json */; };
+		567CF0062989597600C01980 /* level_22.json in Resources */ = {isa = PBXBuildFile; fileRef = 567CF0052989597600C01980 /* level_22.json */; };
 		56870CF329468F0E00FA6987 /* level_15.json in Resources */ = {isa = PBXBuildFile; fileRef = 56870CF229468F0E00FA6987 /* level_15.json */; };
 		568F9FB9294632E400E8B80C /* level_12.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FB8294632E400E8B80C /* level_12.json */; };
 		568F9FBB2946377A00E8B80C /* level_13.json in Resources */ = {isa = PBXBuildFile; fileRef = 568F9FBA2946377A00E8B80C /* level_13.json */; };
@@ -67,6 +68,7 @@
 		5672F223293961E0009EE096 /* level_11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_11.json; sourceTree = "<group>"; };
 		567CF00129894F8E00C01980 /* level_20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_20.json; sourceTree = "<group>"; };
 		567CF0032989518000C01980 /* level_21.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_21.json; sourceTree = "<group>"; };
+		567CF0052989597600C01980 /* level_22.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_22.json; sourceTree = "<group>"; };
 		56870CF229468F0E00FA6987 /* level_15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_15.json; sourceTree = "<group>"; };
 		568F9FB8294632E400E8B80C /* level_12.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_12.json; sourceTree = "<group>"; };
 		568F9FBA2946377A00E8B80C /* level_13.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_13.json; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				564EF7402986BE0B00E278EA /* level_19.json */,
 				567CF00129894F8E00C01980 /* level_20.json */,
 				567CF0032989518000C01980 /* level_21.json */,
+				567CF0052989597600C01980 /* level_22.json */,
 			);
 			name = LevelsJSON;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				569E8ADC28AEA4320005D7FA /* Main.storyboard in Resources */,
 				56A7CD0A28B8032300802543 /* MenuScene.sks in Resources */,
 				569E8AD328AEA4320005D7FA /* GameScene.sks in Resources */,
+				567CF0062989597600C01980 /* level_22.json in Resources */,
 				56919EED28C8F40D00F3B354 /* level_5.json in Resources */,
 				564EF73F2986B94000E278EA /* level_18.json in Resources */,
 				569E8ADE28AEA4350005D7FA /* Assets.xcassets in Resources */,
