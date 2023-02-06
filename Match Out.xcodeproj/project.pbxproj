@@ -12,6 +12,9 @@
 		56013EF528CE30F600BCABC3 /* OneMoreTestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 56013EF428CE30F600BCABC3 /* OneMoreTestScene.sks */; };
 		560FB18C298AB92B0078A190 /* level_23.json in Resources */ = {isa = PBXBuildFile; fileRef = 560FB18B298AB92B0078A190 /* level_23.json */; };
 		560FB18E298C25B50078A190 /* level_24.json in Resources */ = {isa = PBXBuildFile; fileRef = 560FB18D298C25B50078A190 /* level_24.json */; };
+		560FB19029904B340078A190 /* LevelSelectScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 560FB18F29904B340078A190 /* LevelSelectScene.sks */; };
+		560FB19429904CDC0078A190 /* LevelSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FB19329904CDC0078A190 /* LevelSelectScene.swift */; };
+		560FB19629905A1E0078A190 /* SwiftySKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FB19529905A1D0078A190 /* SwiftySKScrollView.swift */; };
 		564EF73B2985D19000E278EA /* level_16.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73A2985D19000E278EA /* level_16.json */; };
 		564EF73D2986B63500E278EA /* level_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73C2986B63400E278EA /* level_17.json */; };
 		564EF73F2986B94000E278EA /* level_18.json in Resources */ = {isa = PBXBuildFile; fileRef = 564EF73E2986B94000E278EA /* level_18.json */; };
@@ -65,6 +68,9 @@
 		56013EF428CE30F600BCABC3 /* OneMoreTestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OneMoreTestScene.sks; sourceTree = "<group>"; };
 		560FB18B298AB92B0078A190 /* level_23.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_23.json; sourceTree = "<group>"; };
 		560FB18D298C25B50078A190 /* level_24.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_24.json; sourceTree = "<group>"; };
+		560FB18F29904B340078A190 /* LevelSelectScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelectScene.sks; sourceTree = "<group>"; };
+		560FB19329904CDC0078A190 /* LevelSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectScene.swift; sourceTree = "<group>"; };
+		560FB19529905A1D0078A190 /* SwiftySKScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftySKScrollView.swift; sourceTree = "<group>"; };
 		564EF73A2985D19000E278EA /* level_16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_16.json; sourceTree = "<group>"; };
 		564EF73C2986B63400E278EA /* level_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_17.json; sourceTree = "<group>"; };
 		564EF73E2986B94000E278EA /* level_18.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_18.json; sourceTree = "<group>"; };
@@ -166,11 +172,14 @@
 				569E8AD228AEA4320005D7FA /* GameScene.sks */,
 				56FCE26128B0F95700307714 /* TestLevelScene.sks */,
 				56013EF428CE30F600BCABC3 /* OneMoreTestScene.sks */,
+				560FB18F29904B340078A190 /* LevelSelectScene.sks */,
 				56A7CD0928B8032300802543 /* MenuScene.sks */,
 				569E8AD428AEA4320005D7FA /* Actions.sks */,
 				569E8AD628AEA4320005D7FA /* GameScene.swift */,
+				560FB19329904CDC0078A190 /* LevelSelectScene.swift */,
 				56D1E8E028D39BBE003E3594 /* MenuScene.swift */,
 				569E8AD828AEA4320005D7FA /* GameViewController.swift */,
+				560FB19529905A1D0078A190 /* SwiftySKScrollView.swift */,
 				569E8ADA28AEA4320005D7FA /* Main.storyboard */,
 				569E8ADD28AEA4350005D7FA /* Assets.xcassets */,
 				569E8ADF28AEA4350005D7FA /* LaunchScreen.storyboard */,
@@ -352,6 +361,7 @@
 				568F9FBD294688B600E8B80C /* level_14.json in Resources */,
 				56013EF528CE30F600BCABC3 /* OneMoreTestScene.sks in Resources */,
 				56A7CD0828B7992800802543 /* testLevel.json in Resources */,
+				560FB19029904B340078A190 /* LevelSelectScene.sks in Resources */,
 				560FB18C298AB92B0078A190 /* level_23.json in Resources */,
 				568F9FB9294632E400E8B80C /* level_12.json in Resources */,
 				56C47CFB28BFA69300B9980B /* level_1.json in Resources */,
@@ -384,6 +394,7 @@
 				569E8AD728AEA4320005D7FA /* GameScene.swift in Sources */,
 				56D1E8E128D39BBE003E3594 /* MenuScene.swift in Sources */,
 				56D1E8E328D5BF4C003E3594 /* SKAdvancedLabelNode.swift in Sources */,
+				560FB19629905A1E0078A190 /* SwiftySKScrollView.swift in Sources */,
 				56A7CD0F28BE954B00802543 /* LevelParser.swift in Sources */,
 				56A4CB0B293BD5A40050CDBF /* BadgeButton.swift in Sources */,
 				56CA5ECB28C888D200EEB5BA /* SpriteKit-Spring.swift in Sources */,
@@ -395,6 +406,7 @@
 				56CA5EC828C7A68400EEB5BA /* SwiftConfettiView.swift in Sources */,
 				56D1E8DF28D0D375003E3594 /* MenuButton.swift in Sources */,
 				56D1E8DC28D0D285003E3594 /* MatchForm.swift in Sources */,
+				560FB19429904CDC0078A190 /* LevelSelectScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

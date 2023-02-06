@@ -51,6 +51,7 @@ class MenuScene: SKScene {
             levelSelectButton.position = CGPoint.init(x: 190, y: -562)
             levelSelectButton.colorBlendFactor = 0.4
             levelSelectButton.color = globalBlueColor
+            levelSelectButton.name = "levelSelect"
             self.addChild(levelSelectButton)
             
             // Размещаем монетки и сумму, для теста. Анимируем монетки
@@ -266,6 +267,17 @@ class MenuScene: SKScene {
                     let rotateAction = SKAction.rotate(byAngle: MatchNode().floatAngleFromString(stringAngle: ".pi"), duration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
                     settingsButton.run(rotateAction)
                     return()
+                }
+                else if node.name == "levelSelect" {
+                    let levelSelectScene = LevelSelectScene(fileNamed: "LevelSelectScene")!
+                    levelSelectScene.scaleMode = SKSceneScaleMode.aspectFill
+                    for view in self.view!.subviews {
+                        view.removeFromSuperview()
+                    }
+                    if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {
+                        let transition = SKTransition(ciFilter: filter, duration: 0.5)
+                        self.view?.presentScene(levelSelectScene, transition: transition)
+                    }
                 }
             }
         }

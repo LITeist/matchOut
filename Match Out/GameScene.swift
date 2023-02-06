@@ -312,6 +312,18 @@ class GameScene: SKScene {
         }
     }
     
+    @objc func goToLevelSelect() {
+        let menuScene = MenuScene(fileNamed: "LevelSelectScene")!
+        menuScene.scaleMode = SKSceneScaleMode.aspectFill
+       for view in self.view!.subviews {
+           view.removeFromSuperview()
+       }
+        if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {
+            let transition = SKTransition(ciFilter: filter, duration: 0.5)
+            self.view?.presentScene(menuScene, transition: transition)
+        }
+    }
+    
     func isSucceedGameFinished(solve: solveModel)->Bool {
         if self.levelModel?.gameplayType == .move {
             for matchModel in solve.matchArray {
