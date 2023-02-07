@@ -261,7 +261,9 @@ class MenuScene: SKScene {
                         self.addChild(shapeBackgroundNode)
                         
                         let fadeAnimation = SKAction.fadeAlpha(to: 0.95, duration: 0.75)
-                        shapeBackgroundNode.run(fadeAnimation)
+                        shapeBackgroundNode.run(fadeAnimation) {
+                            self.presentSettings(parentNode: shapeBackgroundNode)
+                        }
                     }
 
                     let rotateAction = SKAction.rotate(byAngle: MatchNode().floatAngleFromString(stringAngle: ".pi"), duration: 1.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5)
@@ -285,5 +287,50 @@ class MenuScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
    
+    }
+    
+    func presentSettings(parentNode: SKSpriteNode) {
+        
+        if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
+
+            let musicLabel = SKLabelNode.init(text: "Music:")
+            musicLabel.fontName = "HelveticaNeue-Bold"
+            musicLabel.fontSize = 58
+            musicLabel.fontColor = UIColor.white
+            musicLabel.position = CGPoint.init(x: -150, y: 350)
+            musicLabel.horizontalAlignmentMode = .center
+            musicLabel.verticalAlignmentMode = .center
+            parentNode.addChild(musicLabel)
+            
+            let chooseOffMusic = ChooseLevelButtonNode.init(buttonTitle: "Off", isEnabled: true, textColor: .white, isSelected: true, matchType: themeLevel.matchType)
+            chooseOffMusic.position = CGPoint.init(x: 70, y: 350)
+            parentNode.addChild(chooseOffMusic)
+            
+            let chooseOnfMusic = ChooseLevelButtonNode.init(buttonTitle: "On", isEnabled: false, textColor: .white, isSelected: false, matchType: themeLevel.matchType)
+            chooseOnfMusic.position = CGPoint.init(x: 200, y: 350)
+            parentNode.addChild(chooseOnfMusic)
+            
+            let soundLabel = SKLabelNode.init(text: "Sound:")
+            soundLabel.fontName = "HelveticaNeue-Bold"
+            soundLabel.fontSize = 58
+            soundLabel.fontColor = UIColor.white
+            soundLabel.position = CGPoint.init(x: -150, y: 100)
+            soundLabel.horizontalAlignmentMode = .center
+            soundLabel.verticalAlignmentMode = .center
+            parentNode.addChild(soundLabel)
+            
+            let chooseOffSound = ChooseLevelButtonNode.init(buttonTitle: "Off", isEnabled: false, textColor: .white, isSelected: false, matchType: themeLevel.matchType)
+            chooseOffSound.position = CGPoint.init(x: 70, y: 100)
+            parentNode.addChild(chooseOffSound)
+            
+            let chooseOnSound = ChooseLevelButtonNode.init(buttonTitle: "On", isEnabled: true, textColor: .white, isSelected: true, matchType: themeLevel.matchType)
+            chooseOnSound.position = CGPoint.init(x: 200, y: 100)
+            parentNode.addChild(chooseOnSound)
+            
+            let restorePurchaseButton = MenuButton.init(size: .medium, title: "Restore purchase", type: ThemeModel.init(textColor: UIColor.white, buttonsTintColor: UIColor.white, backgroundLevelSprite: SKSpriteNode(), matchType: themeLevel.matchType))
+            restorePurchaseButton.position = CGPoint.init(x: 0, y: -300)
+            restorePurchaseButton.fontSize = 50
+            parentNode.addChild(restorePurchaseButton)
+        }
     }
 }

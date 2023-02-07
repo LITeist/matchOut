@@ -17,6 +17,11 @@ enum MenuButtonSize: String, Decodable {
 // Класс кнопки в главном меню
 class MenuButton: SKNode {
     var animatedLabel: SKAdvancedLabelNode = SKAdvancedLabelNode()
+    var fontSize: CGFloat = 70.0 {
+        didSet {
+            animatedLabel.fontSize = fontSize
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
