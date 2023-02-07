@@ -9,7 +9,6 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-let chooseButtonSize: CGFloat = 90
 
 class LevelSelectScene: SKScene {
 
@@ -102,13 +101,14 @@ class LevelSelectScene: SKScene {
 //        let page4ScrollView = SKSpriteNode(color: .clear, size: CGSize(width: scrollView.frame.width, height: scrollView.frame.size.height))
 //        page4ScrollView.position = CGPoint(x: frame.midX, y: frame.midY)
 //        moveableNode.addChild(page4ScrollView)
-        
+        let currentUserLevel = self.gameService?.getUserLevelNumber() ?? 0
+        let maxUserLevel = self.gameService?.getUserMaxLevelNumber() ?? 0
         /// Test sprites page 1
         self.levelModel = LevelParser().loadLevel(levelName: gameService?.getUserLevel() ?? "level_1")
         if let themeLevel = ThemeService.backgroundColorForLevelType(levelType: self.levelModel?.levelType) {
             let halfWidth = (self.view?.frame.size.width)!/2
             let offset = (halfWidth - chooseButtonSize) / 1
-            let totalNumberOfLevels = 12
+            let totalNumberOfLevels = 24
     //
             let iCounter: Int = Int(totalNumberOfLevels/3) // Сколько рядов по 3
             let jCounter: Int = 2 // Сколько в ряду - 3, от 0 до 2
@@ -117,18 +117,32 @@ class LevelSelectScene: SKScene {
             for i in 0...min(iCounter, 3) {
                 let y = baseYOffset - CGFloat(i) * (chooseButtonSize + 100)
                 for j in 0...jCounter {
-    //                var isButtonEnabled = true
+                    var isButtonEnabled = true
     //                // Если уровень еще не доступен
-    //                if levelCounter > currentUserLevel {
-    //                    isButtonEnabled = false
-    //                }
-                    let levelString = SKLabelNode(text: String(levelCounter))
-                    levelString.fontSize = 55
-                    levelString.fontName = "HelveticaNeue-Bold"
-                    levelString.color = themeLevel.textColor
-                    levelString.fontColor = themeLevel.textColor
-                    levelString.position = CGPoint(x: -halfWidth + CGFloat(j) * (offset + chooseButtonSize), y: y)
-                    page1ScrollView.addChild(levelString)
+                    if levelCounter > maxUserLevel {
+                        isButtonEnabled = false
+                    }
+                    var isLevelSelected = false
+                    if levelCounter == currentUserLevel {
+                        isLevelSelected = true
+                    }
+                    let levelButton = ChooseLevelButtonNode.init(buttonTitle: String(levelCounter), isEnabled: isButtonEnabled, textColor: themeLevel.textColor, isSelected: isLevelSelected, matchType: themeLevel.matchType)
+                    levelButton.isUserInteractionEnabled = isButtonEnabled
+                    levelButton.position = CGPoint(x: -halfWidth + CGFloat(j) * (offset + chooseButtonSize), y: y)
+                    levelButton.levelToSelect = levelCounter
+                    levelButton.selectedHandler = {
+                        for view in self.view!.subviews {
+                            view.removeFromSuperview()
+                        }
+                        self.gameService?.setUserLevel(level: levelButton.levelToSelect)
+                        let scene = GameScene(fileNamed: "GameScene")!
+                        scene.scaleMode = SKSceneScaleMode.aspectFill
+                        if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {
+                            let transition = SKTransition(ciFilter: filter, duration: 0.5)
+                            self.view?.presentScene(scene, transition: transition)
+                        }
+                    }
+                    page1ScrollView.addChild(levelButton)
     //                let buttonChoose = ChooseMenuButtonNode.init(buttonTitle: String(levelCounter), isEnabled: isButtonEnabled)
     //                buttonChoose.position = CGPoint(x: -halfWidth + CGFloat(j) * (offset + chooseButtonSize), y: y)
     //                buttonChoose.levelToSelect = levelCounter
@@ -144,15 +158,19 @@ class LevelSelectScene: SKScene {
                     levelCounter+=1
                 }
             }
-        }
 
-////        levelCounter = 1
-//        for i in 0...min(iCounter-5, 5) {
-//            let y = baseYOffset - CGFloat(i) * (chooseButtonSize + 50)
-//            for j in 0...jCounter {
-////                let number: Int = 24 + levelCounter
-//                var isButtonEnabled = true
+        for i in 0...min(iCounter-5, 5) {
+            let y = baseYOffset - CGFloat(i) * (chooseButtonSize + 100)
+            for j in 0...jCounter {
+                var isButtonEnabled = true
 //                // Если уровень еще не доступен
+                if levelCounter > maxUserLevel {
+                    isButtonEnabled = false
+                }
+                var isLevelSelected = false
+                if levelCounter == currentUserLevel {
+                    isLevelSelected = true
+                }                // Если уровень еще не доступен
 //                if levelCounter > currentUserLevel {
 //                    isButtonEnabled = false
 //                }
@@ -169,10 +187,27 @@ class LevelSelectScene: SKScene {
 //                    let transition = SKTransition.doorsOpenVertical(withDuration: 0.7)
 //                    self.view?.presentScene(scene, transition: transition)
 //                }
-//                page2ScrollView.addChild(buttonChoose)
-//                levelCounter+=1
-//            }
-//        }
+                let levelButton = ChooseLevelButtonNode.init(buttonTitle: String(levelCounter), isEnabled: isButtonEnabled, textColor: themeLevel.textColor, isSelected: isLevelSelected, matchType: themeLevel.matchType)
+                levelButton.isUserInteractionEnabled = isButtonEnabled
+                levelButton.position = CGPoint(x: -halfWidth + CGFloat(j) * (offset + chooseButtonSize), y: y)
+                levelButton.levelToSelect = levelCounter
+                levelButton.selectedHandler = {
+                    for view in self.view!.subviews {
+                        view.removeFromSuperview()
+                    }
+                    self.gameService?.setUserLevel(level: levelButton.levelToSelect)
+                    let scene = GameScene(fileNamed: "GameScene")!
+                    scene.scaleMode = SKSceneScaleMode.aspectFill
+                    if let filter = CIFilter(name: "CIBarsSwipeTransition", parameters: nil) {
+                        let transition = SKTransition(ciFilter: filter, duration: 0.5)
+                        self.view?.presentScene(scene, transition: transition)
+                    }
+                }
+                page2ScrollView.addChild(levelButton)
+                levelCounter+=1
+            }
+        }
+    }
         
 //        for i in 0...min(iCounter-10, 5) {
 //            let y = baseYOffset - CGFloat(i) * (chooseButtonSize + 50)
